@@ -1,0 +1,166 @@
+   // const [valores, setvalores] = useState([{ producto: "", precio: 0 }]);
+ // const handleInputChange = (event) => {
+   // setvalores({
+    //  ...valores,
+     // [event.target.name]: event.target.value,
+   // });
+ // };//
+
+   //const onSubmit = (event) => {
+  //  event.preventDefault();
+  //  event.target.reset();
+  //  setproducto([...producto, valores]);
+ // };
+
+
+
+
+  {
+      producto: "Harina de Trigo Doña Maria",
+      precio: 1.80,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1038/1038.png?tr=w-180",
+    },
+    {
+      producto: "Papel Higienico Rosal Plis",
+      precio: 1.50,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/3023/Rosal_plus.png?tr=w-180",
+    },
+    {
+      producto: "Jabon Azul Las Llaves",
+      precio: 1.38,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1041/1041_Jab%C3%B3n_azul_Las_Llaves_250gr_.png?tr=w-180",
+    },
+    {
+      producto: "Shampoo Drene 350ml",
+      precio: 3,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/495/495_Shampoo__Drene_350ml_.png?tr=w-180",
+    },
+    {
+      producto: "Galletas Charmy Fresa",
+      precio: 1.38,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1270/Charmy_fresa.png?tr=w-180",
+    },
+    {
+      producto: "Jugo de Naranja 1.5 lt Yukery",
+      precio: 3.04,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/411/411_Jugo_de_Naranja_Yukery_1.5lt.png?tr=w-180",
+    },
+    {
+      producto: "Oreo Chocolate 108 gr",
+      precio: 1.50,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1273/oreo.png?tr=w-180",
+    },
+    {
+      producto: "Cerveza Polarcita x 36",
+      precio: 29.99,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1104/Polar_.png?tr=w-180",
+    },
+
+    {
+      producto: "Mortadela Especial Plumrose",
+      precio: 3.75,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1069/Mortadela_especial_plumrose.png?tr=w-180",
+    },
+
+    {
+      producto: "Queso Paisa Blanco",
+      precio: 4.48,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/6519/Queso_Blanco_Paisa_Rebanado_500Grs.png?tr=w-180",
+    },
+
+    {
+      producto: "Pechuga de Pollo 500gr",
+      precio: 1.96,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1012/1012-PechugaDePollo.png?tr=w-180",
+    },
+    {
+      producto: "Combo carne Premiun",
+      precio: 20.81,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/2822/combo_carnes_jr-2.png?tr=w-180",
+    },
+    {
+      producto: "Harina Juana Amarilla",
+      precio: 1.25,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/2844/Harina_Juana_amarilla.png?tr=w-180",
+    },
+    {
+      producto: "Leche condesada Natulac",
+      precio: 2.29,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/414/414.png?tr=w-180",
+    },
+    {
+      producto: "Margariana chiflon",
+      precio: 2.68,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1769/1769.png?tr=w-180",
+    },
+    {
+      producto: "Galletas Sodas",
+      precio: 1.90,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/402/402.png?tr=w-180",
+    },
+    {
+      producto: "Pasta vermicelli",
+      precio: 0.78,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1861/V2-vermicelli-mary.png?tr=w-180",
+    },
+    {
+      producto: "Harina de maiz y arroz Pan ",
+      precio: 1.50,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/11630/Harina_ma%C3%ADz_y_arroz_PAN_1_kg.png?tr=w-180",
+    },
+    {
+      producto: "Corn Flakes 230 gr ",
+      precio: 2,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",
+    },
+        {
+      producto: "Cambur Criollo",
+      precio: 0.96,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1016/1016.png?tr=w-180",
+    },
+
+    {
+      producto: "Pan Blanco de Sandwinch Bimbo",
+      precio: 3,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/929/929.png?tr=w-180",
+    },
+        {
+      producto: "Bulto de Harina de Trigo Ludante",
+      precio: 30,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/11440/Bulto_harina_de_trigo_ludante_Robin_Hood_1kg_20uds.png?tr=w-180",
+    },
+            {
+      producto: "Gatsy Pescando 1kg",
+      precio: 8.4,
+      url:
+        " https://ik.imagekit.io/xdqklh2jgw/media/products/12413/gatsy-pescado-1kg_lf.png?tr=w-180",
+    },
+
+   
+    
+
+
+    
+

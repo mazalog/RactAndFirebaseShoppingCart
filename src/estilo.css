@@ -1,0 +1,72 @@
+::-webkit-scrollbar{
+  width: 10px;
+  height: 100%;
+
+}
+::-webkit-scrollbar-thumb{
+  background:#c5d62e; 
+  border-radius: 15px;
+}
+
+.carrito {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 70px;
+    right: 30px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 17px;
+    z-index: 1;
+  }
+  .carritotable {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 70px;
+    right: 30px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 10000000000;
+  }
+  .menu {
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    bottom: 130px;
+    right: 30px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 1;
+  }
+  .tab {
+    
+    position: fixed;
+    width: 100%;
+    height: 0px;
+    bottom: 68px;
+    right: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 100000000;
+  
+  }
+  #img-carta:hover{
+  filter:  saturate(200%);
+  }
+@media(max-width:800px){
+  html{
+    font-size: 95%;
+  }
+}

@@ -54,9 +54,8 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => {setMobileOpen(!mobileOpen);};
+
   const listaproductos = [
     {
       producto: "Mayonesa Mavesa 900gr",
@@ -173,23 +172,23 @@ function ResponsiveDrawer(props) {
   
     },
   ];
+
   const [busqueda,setbusqueda]=useState("nula")
-  const buscar=(b)=>{
-    console.log(b)
-    setbusqueda(b)
-  }
+
+  const buscar=(b)=>{setbusqueda(b)}
 
   const [categoria,setcategoria]=useState("todos") 
+
   const categorias=(c)=>{
       setcategoria(c)
       setbusqueda("nula")
+      handleDrawerToggle()
   }
 
 
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-
       <List>
         <ListItem button>
           <ListItemIcon>
@@ -305,7 +304,6 @@ function ResponsiveDrawer(props) {
         buscar={buscar}
       ></AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -313,12 +311,8 @@ function ResponsiveDrawer(props) {
             anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
+            classes={{paper: classes.drawerPaper,}}
+            ModalProps={{keepMounted: true, }}
           >
             {drawer}
           </Drawer>
@@ -349,10 +343,6 @@ function ResponsiveDrawer(props) {
 }
 
 ResponsiveDrawer.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
   window: PropTypes.func,
 };
 

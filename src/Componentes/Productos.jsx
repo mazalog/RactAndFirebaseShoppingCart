@@ -1,12 +1,5 @@
 import React, { Fragment, useState, Suspense } from "react";
-import {
-  Grid,
-  Box,
-  Typography,
-  IconButton,
-  Snackbar,
-  Fab,
-} from "@material-ui/core";
+import {Grid,Box,Typography,IconButton,Snackbar,Fab,} from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import AddIcon from "@material-ui/icons/PostAdd";
@@ -272,9 +265,7 @@ const Productos = (props) => {
     }
   };
 
-  const vaciarcarrito = () => {
-    setcarrito([]);
-  };
+  const vaciarcarrito = () => {setcarrito([]);};
 
   var totalproductos = 0;
   const totalcantidadproductos = () => {
@@ -289,17 +280,10 @@ const Productos = (props) => {
   totalcantidadproductos();
 
   const [opensnak, setOpensnak] = useState(false);
-  const handleClickOpensnak = () => {
-    setOpensnak(true);
-  };
-  const handleClosesnak = () => {
-    setOpensnak(false);
-  };
-
+  const handleClickOpensnak = () => {setOpensnak(true);};
+  const handleClosesnak = () => {setOpensnak(false);};
   const [open, setOpen] = useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const handleClickOpen = () => {setOpen(true);};
   const handleClose = (item) => {
     setcarrito(item);
     setOpen(false);

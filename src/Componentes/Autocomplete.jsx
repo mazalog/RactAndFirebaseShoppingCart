@@ -1,4 +1,5 @@
 import React from "react";
+import {useProductos} from '../hooks/useProductos'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 
@@ -8,12 +9,15 @@ export default function Auto(props) {
     event.preventDefault()
      props.buscar(values)
   }
+  
+  const {productos}=useProductos()
+
     return (
       <div style={{ width: 300 }}>
         <Autocomplete
-          options={props.listaproductos}
+          options={productos}
           getOptionLabel={(option) => option.producto}
-          defaultValue={[props.listaproductos[13]]}
+          defaultValue={[productos[13]]}
           onChange={handleInputChange}
           renderInput={(params) => (
             <TextField

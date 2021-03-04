@@ -1,12 +1,13 @@
 import React from 'react'
 import "./estilo.css"
-import DrawerRespo from './Componentes/DrawerRespo'
+import Panel from './Componentes/Panel'
+import {ProductosContextProvider} from './context/ProductosContext'
 
 function App() {
   return (
-    <div >
-          <DrawerRespo></DrawerRespo>
-    </div>
+    <ProductosContextProvider>
+          <Panel> </Panel>
+    </ProductosContextProvider>
   );
 }
 

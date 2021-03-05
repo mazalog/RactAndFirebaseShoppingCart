@@ -5,9 +5,10 @@ import Alert from "@material-ui/lab/Alert";
 import AddIcon from "@material-ui/icons/PostAdd";
 import MenuIcon from "@material-ui/icons/Menu";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Alerta from './Alerta'
 import Card from "./Producto/";
 import Car from "./Car";
-import ModalCarrito from "./ModalCarrito";
+import ModalCarrito from './ModalCarrito'
 import {useProductos} from "../hooks/useProductos";
 import {useCarrito} from "../hooks/useCarrito"
 
@@ -143,16 +144,9 @@ const Productos = (props) => {
           open={open}
         ></ModalCarrito>
       </div>
-      <Snackbar
-        open={alertaAddProducto}
-        autoHideDuration={600}
-        onClose={cerrarAlertaAddProducto}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert onClose={cerrarAlertaAddProducto} variant="filled" severity="success">
-          Agregado al carrito
-        </Alert>
-      </Snackbar>
+
+      <Alerta text="Agregado al carrito" alerta={alertaAddProducto} cerrar={cerrarAlertaAddProducto} tipo="success" />
+   
     </>
   );
 };

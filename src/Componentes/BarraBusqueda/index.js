@@ -1,5 +1,5 @@
 import React from "react";
-import {useProductos} from '../hooks/useProductos'
+import {useProductos} from '../../hooks/useProductos'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
 

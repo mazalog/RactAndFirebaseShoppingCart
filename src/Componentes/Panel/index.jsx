@@ -59,17 +59,19 @@ function ResponsiveDrawer(props) {
               <Grid container item xs={12}>
                 <Box marginY={6}>
                   <Typography variant="h6" component="b" color="initial">
-                    <Bread categoria={categoria}></Bread>
+                    <Bread 
+                    categoria={categoria}
+                    />
                   </Typography>
                 </Box>
               </Grid>
             </Grid>
 
             <Productos
-                 categoria={categoria}
-                 handleDrawerToggle={handleDrawerToggle}
-                 clase={classes.appBar}
-                 busqueda={busqueda}
+            categoria={categoria}
+            handleDrawerToggle={handleDrawerToggle}
+            clase={classes.appBar}
+            busqueda={busqueda}
             />
             
             </div>

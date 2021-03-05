@@ -36,7 +36,7 @@ export function useCarrito(){
            total: totalActual,
            cantidad: totalCantidad,
            precio: producto.precio,
-           imagen: producto.url,
+           imagen: producto.imagen,
          };
          setCarrito(carrito.map( (carro) => carro.producto === producto.producto ? dato : carro ))
          setAlertaAddProducto(true)
@@ -69,7 +69,7 @@ export function useCarrito(){
             total: producto.total - carro.precio,
             cantidad: producto.cantidad - 1,
             precio: carro.precio,
-            imagen: carro.url,
+            imagen: carro.imagen,
           };
           setCarrito(
             carrito.map((carr) =>

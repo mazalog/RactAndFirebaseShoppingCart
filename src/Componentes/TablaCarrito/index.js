@@ -92,7 +92,7 @@ export default function SpanningTable(props) {
                     <Avatar alt="Remy Sharp" src={item.imagen} />
                     {item.producto}
                   </TableCell>
-                  <TableCell align="right">{item.cu}</TableCell>
+                  <TableCell align="right">{item.precio}</TableCell>
                   <TableCell align="left">
                     <IconButton
                       aria-label="dowm"

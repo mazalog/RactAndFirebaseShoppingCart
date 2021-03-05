@@ -7,7 +7,7 @@ import {useStyles} from './style'
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 import {yellow} from '@material-ui/core/colors'
 import KitchenIcon from '@material-ui/icons/Kitchen';
-import Autocomplete from '../Autocomplete'
+import Autocomplete from '../BarraBusqueda'
 
 export default function SearchAppBar(props) {
   

@@ -9,6 +9,8 @@ export function useCarrito(){
 
   const [alertaDeleteProducto,setAlertaDeleteProducto]=useState(false)
 
+  
+
   const addProCarrito =(producto)=> {
 
     let productoActual = {
@@ -16,7 +18,7 @@ export function useCarrito(){
       total: producto.precio,
       cantidad: 1,
       precio: producto.precio,
-      imagen: producto.url
+      url: producto.url
     }
 
    if (carrito.length !== 0) {
@@ -36,7 +38,7 @@ export function useCarrito(){
            total: totalActual,
            cantidad: totalCantidad,
            precio: producto.precio,
-           imagen: producto.imagen,
+           url: producto.url,
          };
          setCarrito(carrito.map( (carro) => carro.producto === producto.producto ? dato : carro ))
          setAlertaAddProducto(true)
@@ -69,7 +71,7 @@ export function useCarrito(){
             total: producto.total - carro.precio,
             cantidad: producto.cantidad - 1,
             precio: carro.precio,
-            imagen: carro.imagen,
+            url: carro.url,
           };
           setCarrito(
             carrito.map((carr) =>
@@ -101,7 +103,7 @@ export function useCarrito(){
   const nCantidad = Object.values(carrito).reduce(
     (acc, { cantidad }) => acc + cantidad,
     0
-  );
+  )
 
    const nPrecio = Object.values(carrito).reduce(
     (acc, { cantidad, precio }) => acc + cantidad * precio,

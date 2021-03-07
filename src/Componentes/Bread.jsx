@@ -4,7 +4,8 @@ import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 import HomeIcon from '@material-ui/icons/Home';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
+import { useLocation } from 'wouter';
+
 
 const useStyles = makeStyles((theme) => ({
   link: {
@@ -17,36 +18,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
-
-export default function IconBreadcrumbs(props) {
+export default function IconBreadcrumbs() {
   const classes = useStyles();
+
+  const [,navigate]=useLocation()
+
+  function handleClick(event) {
+  event.preventDefault();
+  navigate('/')
+  }
 
   return (
     <Breadcrumbs aria-label="breadcrumb">
       <Link color="inherit" href="#" onClick={handleClick} className={classes.link}>
         <HomeIcon className={classes.icon} />
         MzHogar
-      </Link>
-      <Link
-        color="inherit"
-        href="#"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        <WhatshotIcon className={classes.icon} />
-        Articulos
-      </Link>
-      <Link
-        color="inherit"
-        href="#"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        {props.categoria}
       </Link>
       <Typography color="textPrimary" className={classes.link}>
         

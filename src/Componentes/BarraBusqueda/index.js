@@ -2,12 +2,15 @@ import React from "react";
 import {useProductos} from '../../hooks/useProductos'
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import {useLocation} from 'wouter'
 
-export default function Auto(props) {
+export default function Auto() {
+
+  const [,navigate]=useLocation()
 
   const handleInputChange=(event,values)=>{
+    if(values) return navigate(`/busqueda/${values.producto}`)
     event.preventDefault()
-     props.buscar(values)
   }
   
   const {productos}=useProductos()

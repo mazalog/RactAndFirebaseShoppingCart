@@ -1,12 +1,16 @@
 import React from 'react'
 import "./estilo.css"
-import Panel from './Componentes/Panel'
 import {ProductosContextProvider} from './context/ProductosContext'
+import { CarritoContextProvider } from "./context/CarritoContext"
+import Panel from './Componentes/Panel'
+
 
 function App() {
   return (
-    <ProductosContextProvider>
-          <Panel> </Panel>
+    <ProductosContextProvider> 
+      <CarritoContextProvider>
+         <Panel/>
+      </CarritoContextProvider>
     </ProductosContextProvider>
   );
 }

@@ -89,7 +89,7 @@ export default function SpanningTable(props) {
               {carrito.map((item, index) => (
                 <TableRow hover key={index}>
                   <TableCell align="left">
-                    <Avatar alt="Remy Sharp" src={item.imagen} />
+                    <Avatar alt="Remy Sharp" src={item.url} />
                     {item.producto}
                   </TableCell>
                   <TableCell align="right">{item.precio}</TableCell>
@@ -97,7 +97,7 @@ export default function SpanningTable(props) {
                     <IconButton
                       aria-label="dowm"
                       size="small"
-                      color="secondary"
+                      color="initial"
                       onClick={() => eliminarprocarrito(item)}
                     >
                       <RemoveIcon fontSize="small"></RemoveIcon>
@@ -106,7 +106,7 @@ export default function SpanningTable(props) {
                     <IconButton
                       aria-label="up"
                       size="small"
-                      color="primary"
+                      color="initial"
                       onClick={() =>
                         addProCarrito(item)
                       }

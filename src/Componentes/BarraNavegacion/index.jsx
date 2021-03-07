@@ -2,13 +2,22 @@ import React from 'react'
 import { Drawer, Hidden } from "@material-ui/core/";
 import {useTheme } from "@material-ui/core/styles";
 import {useStyles} from './style'
+import {useLocation} from 'wouter'
 import listaCategorias from '../ListaCategorias'
 
-const BarraNavegacion=({container,handleDrawerToggle,mobileOpen,seleccionarCategoria})=>{
+const BarraNavegacion=({container,handleDrawerToggle,mobileOpen})=>{
 
     const theme=useTheme()
     const classes=useStyles()
-    const Categorias=listaCategorias({seleccionarCategoria,classes})
+
+    const [,navigate]=useLocation()
+  
+    const seleccionarCategoria=(categoria)=>{
+      if(categoria==='todos') return navigate(`/`)
+      navigate(`/categorias/${categoria}`)
+    }
+  
+    const Categorias=listaCategorias({classes,seleccionarCategoria})
 
     return(
         <nav className={classes.drawer} aria-label="mailbox folders">

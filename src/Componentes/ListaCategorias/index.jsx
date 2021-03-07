@@ -9,7 +9,10 @@ import KitchenIcon from "@material-ui/icons/Kitchen";
 import Divider from '@material-ui/core/Divider'
 
 
-export default function listaCategorias({seleccionarCategoria,classes}) {
+
+export default function   listaCategorias({classes,seleccionarCategoria}){
+
+
     return (
         <>
         <div className={classes.toolbar} />

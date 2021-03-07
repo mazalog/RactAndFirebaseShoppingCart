@@ -36,13 +36,6 @@
       categoria: "viveres",
     },
     {
-      producto: "Harina PAN 1kg ",
-      precio: 1.17,
-      url:
-        "https://ik.imagekit.io/xdqklh2jgw/media/products/406/406.png?tr=w-180",
-      categoria: "viveres",
-    },
-    {
       producto: "Golden Kolita 1.5 Lts",
       precio: 1.94,
       url:
@@ -175,19 +168,13 @@
     },
 
     {
-      producto: "Harina de maiz y arroz Pan ",
+      producto: "Harina de maiz y arroz Pan",
       precio: 1.5,
       url:
         "https://ik.imagekit.io/xdqklh2jgw/media/products/11630/Harina_ma%C3%ADz_y_arroz_PAN_1_kg.png?tr=w-180",
       categoria: "viveres",
     },
-    {
-      producto: "Corn Flakes 230 gr ",
-      precio: 2,
-      url:
-        "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",
-      categoria: "viveres",
-    },
+
     {
       producto: "Cambur Criollo",
       precio: 0.96,

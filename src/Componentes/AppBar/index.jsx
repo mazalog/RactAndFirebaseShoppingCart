@@ -43,7 +43,7 @@ export default function SearchAppBar(props) {
             >
             MzHogar
             </Typography>
-              <Autocomplete buscar={props.buscar}></Autocomplete>
+              <Autocomplete ></Autocomplete>
           </Toolbar>
         </AppBar>
       </div>

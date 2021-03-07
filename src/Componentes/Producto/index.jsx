@@ -9,6 +9,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import {useStyles} from './style'
+import {useLocation} from 'wouter'
 
 
 
@@ -24,6 +25,12 @@ export default function RecipeReviewCard(props) {
     });
     function ccyFormat(num) {
       return `${num.toFixed(2)}`;
+    }
+
+    const [,navigate]=useLocation()
+
+    const verProducto=(producto)=>{
+    navigate(`/producto/${producto}`)
     }
 
   return (
@@ -43,6 +50,7 @@ export default function RecipeReviewCard(props) {
           className={classes.media}
           image={props.item.url}
           title={props.item.producto}
+          onClick={()=>verProducto(props.item.producto)}
         />
         <CardActions disableSpacing>
           <Grid container spacing={1}>

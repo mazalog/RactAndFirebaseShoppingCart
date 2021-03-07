@@ -1,16 +1,3 @@
-   // const [valores, setvalores] = useState([{ producto: "", precio: 0 }]);
- // const handleInputChange = (event) => {
-   // setvalores({
-    //  ...valores,
-     // [event.target.name]: event.target.value,
-   // });
- // };//
-
-   //const onSubmit = (event) => {
-  //  event.preventDefault();
-  //  event.target.reset();
-  //  setproducto([...producto, valores]);
- // };
 
 
 

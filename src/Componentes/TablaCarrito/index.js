@@ -115,7 +115,7 @@ export default function SpanningTable(props) {
                     </IconButton>
                   </TableCell>
                   <TableCell align="right">
-                    {ccyFormat(parseFloat(item.precio))}
+                    {ccyFormat(parseFloat(item.cantidad*item.precio))}
                   </TableCell>
                 </TableRow>
               ))}

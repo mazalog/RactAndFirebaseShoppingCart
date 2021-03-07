@@ -12,13 +12,17 @@ export default function SimpleBottomNavigation(props) {
   const classes = useStyles();
   const {pagar,nPrecio}=useCarrito()
 
+  function ccyFormat(num) {
+    return `${num.toFixed(2)}`;
+  }
+
   return (
 
     <BottomNavigation
       showLabels
       className={classes.root}
     >
-              <BottomNavigationAction  className={classes.co} label={nPrecio} icon={<LocalAtmIcon fontSize="large" />} onClick={()=>pagar()} />
+              <BottomNavigationAction  className={classes.co} label={'$'+ccyFormat(nPrecio)+' USD'} icon={<LocalAtmIcon fontSize="large" />} onClick={()=>pagar()} />
               <BottomNavigationAction label="CERRAR" icon={<CloseIcon  color="secondary" fontSize="large"/>} onClick={()=>props.cerrar()} />
 
     </BottomNavigation>

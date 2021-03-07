@@ -13,11 +13,18 @@ const BarraNavegacion=({container,handleDrawerToggle,mobileOpen})=>{
     const [,navigate]=useLocation()
   
     const seleccionarCategoria=(categoria)=>{
-      if(categoria==='todos') return navigate(`/`)
-      navigate(`/categorias/${categoria}`)
+      if(mobileOpen){
+        handleDrawerToggle()
+        if(categoria==='todos') return navigate(`/`)
+        navigate(`/categorias/${categoria}`)
+      }else{
+        if(categoria==='todos') return navigate(`/`)
+        navigate(`/categorias/${categoria}`)
+      }
     }
   
     const Categorias=listaCategorias({classes,seleccionarCategoria})
+    
 
     return(
         <nav className={classes.drawer} aria-label="mailbox folders">

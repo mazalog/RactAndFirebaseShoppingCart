@@ -5,7 +5,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Paper, Grid, IconButton, Tooltip} from "@material-ui/core/";
+import { Paper, Grid, IconButton, Tooltip } from "@material-ui/core/";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -17,7 +17,7 @@ import Button from "@material-ui/core/Button";
 import BotonesCarrito from "../BotonesCarrito";
 import Alerta from '../Alerta'
 import { useCarrito } from "../../hooks/useCarrito";
-import {useStyles} from './style'
+import { useStyles } from './style'
 
 export default function SpanningTable(props) {
 
@@ -28,19 +28,19 @@ export default function SpanningTable(props) {
     return `${num.toFixed(2)}`;
   }
 
-  const {carrito,
-        addProCarrito,
-        eliminarProCarrito,
-        alertaAddProducto,
-        cerrarAlertaAddProducto,
-        alertaDeleteProducto,
-        cerrarAlertaDeleteProducto,
-        nCantidad,
-        nPrecio,
-        pagar
-      } =useCarrito()
+  const { carrito,
+    addProCarrito,
+    eliminarProCarrito,
+    alertaAddProducto,
+    cerrarAlertaAddProducto,
+    alertaDeleteProducto,
+    cerrarAlertaDeleteProducto,
+    nCantidad,
+    nPrecio,
+    pagar
+  } = useCarrito()
 
-  const eliminarprocarrito=(producto)=>{
+  const eliminarprocarrito = (producto) => {
     eliminarProCarrito(producto)
   }
 
@@ -51,9 +51,7 @@ export default function SpanningTable(props) {
       <DialogTitle id="form-dialog-title">
         <Grid container spacing={1}>
           <Grid container justify="flex-start" item xs={8}>
-            <Button className="text-white bg-success" variant="outlined"  onClick={()=>pagar()}>
-              Pagar {ccyFormat(parseFloat(nPrecio))}$ de  ({nCantidad}) articulos
-            </Button>
+            <h4 onClick={pagar} style={{ fontWeight: '600', color: 'gray', cursor: 'pointer' }}> {ccyFormat(parseFloat(nPrecio))}$ de  ({nCantidad}) articulos</h4>
           </Grid>
           <Grid container justify="flex-end" item xs={4}>
             <Tooltip title="Cerrar Carrito">
@@ -69,8 +67,8 @@ export default function SpanningTable(props) {
         </Grid>
       </DialogTitle>
       <DialogContent>
-        <TableContainer component={Paper}>
-          <Table className={classes.table} aria-label="spanning table">
+        <div style={{ height: '65vh', width: '100%', padding: 0, overflow: 'auto' }}>
+          <Table aria-label="spanning table">
             <TableHead>
               <TableRow hover>
                 <TableCell align="center" colSpan={3}>
@@ -115,23 +113,26 @@ export default function SpanningTable(props) {
                     </IconButton>
                   </TableCell>
                   <TableCell align="right">
-                    {ccyFormat(parseFloat(item.cantidad*item.precio))}
+                    {ccyFormat(parseFloat(item.cantidad * item.precio))}
                   </TableCell>
                 </TableRow>
               ))}
 
               <TableRow>
-                <TableCell rowSpan={3} />
-                <TableCell colSpan={2}>Total Pagar</TableCell>
-                <TableCell align="right">
+                <TableCell colSpan={1}>Total Pagar</TableCell>
+                <TableCell align="left">
                   <p>
                     <b>{ccyFormat(parseFloat(nPrecio))}$</b>
                   </p>
                 </TableCell>
+                <TableCell colSpan={2}></TableCell>
+
               </TableRow>
             </TableBody>
+
           </Table>
-        </TableContainer>
+        </div>
+
       </DialogContent>
 
       <DialogActions>
@@ -143,9 +144,9 @@ export default function SpanningTable(props) {
       </DialogActions>
 
 
-      <Alerta text="Agregado al carrito" alerta={alertaAddProducto} cerrar={cerrarAlertaAddProducto} tipo="success"/>
-      <Alerta text="Articulo fuera del carrito" alerta={alertaDeleteProducto} cerrar={cerrarAlertaDeleteProducto} tipo="error"/>
- 
-    </div>
+      <Alerta text="Agregado al carrito" alerta={alertaAddProducto} cerrar={cerrarAlertaAddProducto} tipo="success" />
+      <Alerta text="Articulo fuera del carrito" alerta={alertaDeleteProducto} cerrar={cerrarAlertaDeleteProducto} tipo="error" />
+
+    </div >
   );
 }

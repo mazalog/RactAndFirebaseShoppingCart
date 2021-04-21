@@ -3,6 +3,7 @@ import {makeStyles} from '@material-ui/core/styles'
 export const useStyles = makeStyles((theme) => ({
     table: {
       minWidth: 500,
+      maxHeight:200,
     },
     root: {
       display: "flex",

@@ -24,6 +24,7 @@ const SingleProducto=({params})=>{
 
     const {productos}=useProductos()
 
+
     const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad}=useCarrito()  
 
     const {abreModalCarrito}=useModalCarrito()
@@ -32,7 +33,10 @@ const SingleProducto=({params})=>{
 
     const producto=productos.find(producto=>producto.producto===decodeURI(params.producto))
 
+
+
     const [proRandom,setProRandom]=React.useState([])
+
     const masProductos=()=>{
           const productosRandom=[]
            for(var n = 0; n < 6; n++) {
@@ -43,6 +47,7 @@ const SingleProducto=({params})=>{
     }
 
     useEffect(()=>{
+    
      masProductos()
     },[])
     function ccyFormat(num) {
@@ -61,7 +66,7 @@ const SingleProducto=({params})=>{
                  </Typography>
                  <br/>
                  <Typography variant="h6" color="textSecondary">
-                     Descripcion
+                     Descripción
                  </Typography>
                  <br/>
                  <Typography variant="body2" color="textSecondary">

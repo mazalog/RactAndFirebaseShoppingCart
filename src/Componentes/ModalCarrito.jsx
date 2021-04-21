@@ -13,8 +13,8 @@ export default function ModalCarrito(props) {
   return (
     <div>
       <Dialog
-        width={fullScreen}
-        open={props.open}
+       fullScreen={fullScreen}    
+       open={props.open}
         onClose={props.handleClose}
         aria-labelledby="form-dialog-title"
       >

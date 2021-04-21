@@ -4,12 +4,14 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import { Paper, Box, Grid, Tooltip } from "@material-ui/core";
+import { Paper, Box, Grid, Tooltip,Button } from "@material-ui/core";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import {useStyles} from './style'
-import {useLocation} from 'wouter'
+import {useLocation,} from 'wouter'
+import { animateScroll as scroll } from 'react-scroll';
+
 
 
 
@@ -17,7 +19,7 @@ export default function RecipeReviewCard(props) {
   
   const classes = useStyles();
 
-  
+
     const theme = createMuiTheme({
     palette: {
         primary: green,
@@ -30,11 +32,12 @@ export default function RecipeReviewCard(props) {
     const [,navigate]=useLocation()
 
     const verProducto=(producto)=>{
+        scroll.scrollToTop()
     navigate(`/producto/${producto}`)
     }
 
   return (
-    <Paper elevation={10}>
+    <Paper   elevation={15}>
       <Card className={classes.root}>
         <Box 
         margin={1}
@@ -62,17 +65,18 @@ export default function RecipeReviewCard(props) {
             <Grid container justify="flex-end" item xs={6}>
             <ThemeProvider theme={theme}>
               <Tooltip title="Agregar al carrito">
-                  <IconButton
-                    aria-label="show more"
-                    color="primary"
+
+                    <Button   
+                    size="small"
                     onClick={() =>
                       props.addprocarrito(
                         props.item
                       )
-                    }
-                  >
-                    <AddShoppingCartIcon />
-                  </IconButton>
+                    } 
+                    color="primary" 
+                    endIcon={<AddShoppingCartIcon/>}
+                     >Añadir</Button>
+
               </Tooltip>
               </ThemeProvider>
             </Grid>

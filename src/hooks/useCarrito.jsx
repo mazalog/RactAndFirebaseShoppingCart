@@ -142,7 +142,7 @@ export function useCarrito(){
    nPrecio = formateoCantidad(nPrecio);
 
    window.open(
-     `https://api.whatsapp.com/send?phone=584123396643&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
+     `https://api.whatsapp.com/send?phone=584241917939&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
      "_blank"
    );
    vaciarCarrito();

@@ -15,7 +15,7 @@
       categoria: "viveres",
     },
     {
-      producto: "Arroz Mari tradicional",
+      producto: "Arroz Mary tradicional",
       precio: 1.45,
       url:
         "https://ik.imagekit.io/xdqklh2jgw/media/products/2535/Mary_arroz_Tradicional_.png?tr=w-180",

@@ -1,0 +1,75 @@
+.containerPage{
+    margin-bottom: 3rem;
+}
+.container-title{
+    width: 100%;
+    background-color: #fff176a1;
+    text-align: center;
+    border-radius: 4px;
+    margin-bottom: 50px;
+    display: grid;
+    align-items: center;
+    min-height: 3rem;
+}
+.container-inputs{
+    padding: 7px;
+    width: 100%;
+}
+.label-input{
+    margin-bottom: 0px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 32px;
+}
+.label-textarea{
+    margin-bottom: 0px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 64px;
+}
+.container-pedido{
+    width: 100%;
+}
+.bg-pedido{
+    background-color: rgba(128, 128, 128, 0.075);
+    border-radius: 4px;
+    width: 100%;
+}
+.box-pedido{
+    padding: 23px;
+}
+.container-list{
+    margin-left: 12px;
+    margin-top: 28px;
+}
+.list{
+    font-weight: 500;
+    color: gray;
+}
+.total-title{
+    margin-top: 15px;
+    font-weight: 500;
+    color: gray;
+}
+.total{
+    font-size: 20px;
+    font-weight: 500;
+    color: gray;
+}
+.container-btn{
+    margin: 30px;
+    text-align: center;
+}
+.span{
+    font-weight: 500;
+    font-size: 12px;
+    color: gray;
+
+}
+.btn-realizar-pedido{
+    cursor: pointer;
+    margin-top: 1rem;
+    border: 1px solid gray;
+    padding: 6px;
+}
+

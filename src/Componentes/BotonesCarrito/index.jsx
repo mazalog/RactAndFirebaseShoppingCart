@@ -1,33 +1,46 @@
-import React from 'react';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import CloseIcon from '@material-ui/icons/Close';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import React from 'react'
+import BottomNavigation from '@material-ui/core/BottomNavigation'
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
+import CloseIcon from '@material-ui/icons/Close'
 import {useStyles} from './style'
 import {useCarrito} from '../../hooks/useCarrito'
 import './styleCss.css'
+import { useLocation} from 'wouter'
+import { useModalCarrito } from '../../hooks/useModalCarrito'
+import {animateScroll as scroll} from 'react-scroll'
 
 
 export default function SimpleBottomNavigation(props) {
+
+  
   
   const classes = useStyles();
-  const {pagar,nPrecio}=useCarrito()
+  const {pagar}=useCarrito()
+  
 
-  function ccyFormat(num) {
-    return `${num.toFixed(2)}`;
+  const [,navigate]=useLocation()
+
+  const {cerrarModalCarrito}=useModalCarrito()
+  
+  const navegar=()=>{
+    cerrarModalCarrito()
+    scroll.scrollToTop()
+    navigate('/FinalizarPedido')
   }
-
+  
   return (
-
+  <>
     <BottomNavigation
       showLabels
       className={classes.root}
     >
-
-   <div onClick={pagar} className="container-wha"><h5 className="wha">Enviar a whatsapp</h5>   </div>         
-
-   <BottomNavigationAction label="CERRAR" icon={<CloseIcon  color="secondary" fontSize="large"/>} onClick={()=>props.cerrar()} />
-
+      <div className="btn-navi">
+         <div onClick={navegar} className="container-"><h6 className="wha">Finalizar Compra </h6></div>   
+         <div style={{marginTop:'6px'}} onClick={pagar} className="container-wha "><h6 className="wha">Realizar pedido por whatsapp</h6></div>         
+      </div>
+   
+    <BottomNavigationAction icon={<CloseIcon  color="secondary" fontSize="large"/>} onClick={()=>props.cerrar()} />
     </BottomNavigation>
+  </>
   );
 }

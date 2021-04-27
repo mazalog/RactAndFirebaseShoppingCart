@@ -4,6 +4,7 @@ export const useStyles = makeStyles((theme) => ({
     table: {
       minWidth: 500,
       maxHeight:200,
+      
     },
     root: {
       display: "flex",

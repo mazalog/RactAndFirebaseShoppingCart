@@ -14,6 +14,7 @@ import BusquedaCategoria from "../../pages/BusquedaCategoria";
 import BusquedaProducto from '../../pages/BusquedaProducto'
 import  Home from "../../pages/Home";
 import  SingleProducto from "../../pages/SingleProducto";
+import FinalizarPedidoPage from "../../pages/FinalizarPedido";
 
 
 
@@ -88,6 +89,10 @@ function Panel(props) {
             <Route
             component={SingleProducto}
             path="/producto/:producto"
+            />
+            <Route
+            component={FinalizarPedidoPage}
+            path="/FinalizarPedido"
             />
 
             <div className="menu">

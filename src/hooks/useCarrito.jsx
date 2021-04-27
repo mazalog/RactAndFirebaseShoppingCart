@@ -25,7 +25,7 @@ export function useCarrito(){
 
      var seguir = true;
 
-     carrito.forEach((carro) => {
+     carrito.forEach((carro) => { 
 
        if (carro.producto === producto.producto) {
 
@@ -120,11 +120,11 @@ export function useCarrito(){
        JSON.stringify(
          doc.producto +
            " - " +
-           doc.cu +
+           doc.precio +
            "$ x " +
            doc.cantidad +
            " uni = " +
-           formateoCantidad(doc.precio) +
+           formateoCantidad(doc.precio)*doc.cantidad +
            "$" +
            "%3A%0A"
        )

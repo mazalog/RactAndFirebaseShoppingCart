@@ -67,7 +67,7 @@ export default function SpanningTable(props) {
         </Grid>
       </DialogTitle>
       <DialogContent>
-        <div style={{ height: '65vh', width: '100%', padding: 0, overflow: 'auto' }}>
+        <div style={{ height: '65vh', width: '100%', padding: 0, overflow: 'auto', borderBottom: '1px solid #b9b5b5' }}>
           <Table aria-label="spanning table">
             <TableHead>
               <TableRow hover>

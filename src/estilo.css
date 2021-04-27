@@ -65,8 +65,34 @@
   #img-carta:hover{
   filter:  saturate(200%);
   }
+
+  .block-xs{
+    display: none;
+  }
+  .none-xs{
+    display: contents;
+  }
+  .btn-navi{
+    display: flex;
+  }
+
 @media(max-width:800px){
   html{
     font-size: 95%;
   }
+}
+@media screen and (max-width:353px){
+  .none-xs{
+    display: none;
+
+  }
+  .block-xs{
+    display: block;
+  }
+}
+@media screen and (max-width:854px){
+  .btn-navi{
+    display:  block;
+  }
+ 
 }

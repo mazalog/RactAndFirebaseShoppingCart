@@ -62,10 +62,11 @@ export default function RecipeReviewCard(props) {
                 {ccyFormat(parseFloat(props.item.precio))}$
               </Typography>
             </Grid>
+
             <Grid container justify="flex-end" item xs={6}>
             <ThemeProvider theme={theme}>
-              <Tooltip title="Agregar al carrito">
-
+             <div className="none-xs">
+             <Tooltip title="Agregar al carrito">
                     <Button   
                     size="small"
                     onClick={() =>
@@ -76,10 +77,26 @@ export default function RecipeReviewCard(props) {
                     color="primary" 
                     endIcon={<AddShoppingCartIcon/>}
                      >Añadir</Button>
-
               </Tooltip>
+             </div>
+             <div className="block-xs">
+             <Tooltip title="Agregar al carrito">
+                    <IconButton  
+                    size="small"
+                    onClick={() =>
+                      props.addprocarrito(
+                        props.item
+                      )
+                    } 
+                    color="primary" 
+                     >
+                      <AddShoppingCartIcon/>
+                     </IconButton>
+              </Tooltip>
+             </div>
               </ThemeProvider>
             </Grid>
+
           </Grid>
         </CardActions>
       </Card>

@@ -7,15 +7,17 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import KitchenIcon from "@material-ui/icons/Kitchen";
 import Divider from '@material-ui/core/Divider'
-
-
+import Social from '../Social'
+import './style.css'
 
 export default function   listaCategorias({classes,seleccionarCategoria}){
-
 
     return (
         <>
         <div className={classes.toolbar} />
+        <div className="NoXs">
+           <Social/>
+        </div>
         <List>
           <ListItem button>
             <ListItemIcon>

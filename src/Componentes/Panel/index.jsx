@@ -98,7 +98,7 @@ function Panel(props) {
             />
             <Route
              component={OrdenPage}
-             path="/FinalizarPedido/Orden"
+             path="/FinalizarPedido/Orden/:orden"
             />
             
             <div className="menu">

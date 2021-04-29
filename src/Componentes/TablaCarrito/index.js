@@ -65,6 +65,11 @@ export default function SpanningTable(props) {
     addProCarrito(item)
   }
 
+  const handleClickRes = (item) => {
+    setClickAdd(clickadd + 1)
+    eliminarprocarrito(item)
+  }
+
   return (
     <div>
       <DialogTitle id="form-dialog-title">
@@ -126,7 +131,7 @@ export default function SpanningTable(props) {
                           aria-label="dowm"
                           size="small"
                           color="initial"
-                          onClick={() => eliminarprocarrito(item)}
+                          onClick={() => handleClickRes(item)}
                         >
                           <RemoveIcon fontSize="small"></RemoveIcon>
                         </IconButton>

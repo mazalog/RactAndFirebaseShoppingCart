@@ -9,11 +9,13 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import { agregaOrden } from '../../firebase/client'
 
 export default function FinalizarPedidoPage() {
 
-    const { carrito, nPrecio, formateoCantidad } = useCarrito()
+    const { carrito, nPrecio, formateoCantidad, nCantidad } = useCarrito()
 
+    const [radio, setRadio] = useState('')
     const valoresIniciales = {
         nombreApellido: ''
         , telefono: '',
@@ -24,20 +26,48 @@ export default function FinalizarPedidoPage() {
         fecha: new Date(),
         carrito: carrito
     }
-
-    const [data, setData] = useState(valoresIniciales)
-    const [radio, setRadio] = useState('')
+    const [valores, setValores] = useState(valoresIniciales)
+    const [errors, setErrors] = useState({})
+    const [loading, setLoading] = useState(false)
 
     const handleInputChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
+        setValores({ ...valores, [e.target.name]: e.target.value })
+        setErrors({})
     }
 
     const handleRadioChange = (e) => {
         setRadio(e.target.value)
+        setErrors({})
     }
 
     const onSubmit = () => {
-        console.log(data)
+
+        if (valores.nombreApellido === '') return setErrors({ ...errors, nombreApellido: true })
+        if (valores.telefono === '') return setErrors({ ...errors, telefono: true })
+        if (valores.correo === '') return setErrors({ ...errors, correo: true })
+        if (valores.direccion === '') return setErrors({ ...errors, direccion: true })
+        if (radio === '') return setErrors({ ...errors, radio: true })
+        if (carrito.length === 0) return setErrors({ ...errors, carritoErr: true })
+        setLoading(true)
+        agregaOrden({
+            cliente: valores.nombreApellido,
+            email: valores.correo,
+            telefono: valores.telefono,
+            direccion: valores.direccion,
+            nota: valores.nota,
+            metodoPago: radio,
+            pedido: carrito,
+            precioTotal: nPrecio,
+            cantidadTotal: nCantidad
+        }).then((res) => {
+            console.log(res.id)
+            setLoading(false)
+            window.location = `/FinalizarPedido/orden/${res.id}`
+        }).catch((err) => {
+            console.log(err)
+            setLoading(false)
+        })
+
     }
 
     return (
@@ -50,13 +80,25 @@ export default function FinalizarPedidoPage() {
                     <Grid item xs={12} sm={12} md={8}>
                         <div className="container-inputs">
                             <p className="label-input">NOMBRE Y APELLIDO *</p>
-                            <Input onChange={handleInputChange} name="nombreApellido" />
+                            <Input type="text" onChange={handleInputChange} name="nombreApellido" />
+                            {
+                                errors.nombreApellido ? <span className="span-error">Escribir nombre y apellido</span> : <></>
+                            }
                             <p className="label-input">TELEFONO *</p>
-                            <Input onChange={handleInputChange} name="telefono" />
+                            <Input type="number" onChange={handleInputChange} name="telefono" />
+                            {
+                                errors.telefono ? <span className="span-error">Escribir numero telefonico</span> : <></>
+                            }
                             <p className="label-input">CORREO ELECTRONICO *</p>
-                            <Input onChange={handleInputChange} name="correo" />
+                            <Input type="email" onChange={handleInputChange} name="correo" />
+                            {
+                                errors.correo ? <span className="span-error">Escribir correo electronico</span> : <></>
+                            }
                             <p className="label-input">DIRECCION DE CALLE *</p>
-                            <Input onChange={handleInputChange} name="direccion" />
+                            <Input type="text" onChange={handleInputChange} name="direccion" />
+                            {
+                                errors.direccion ? <span className="span-error">Escribir direccion</span> : <></>
+                            }
                             <p className="label-textarea"> NOTA DEL PEDIDO(OPCIONAL) </p>
                             <TextTarea onChange={handleInputChange} name="nota" />
                         </div>
@@ -70,35 +112,43 @@ export default function FinalizarPedidoPage() {
                                         {
                                             carrito.map(doc =>
                                                 <div className="list" key={doc.url}>
-                                                    <p>{doc.producto} X {doc.cantidad} = {doc.precio * doc.cantidad}</p>
+                                                    <p>{doc.producto} X {doc.cantidad} = {formateoCantidad(doc.precio * doc.cantidad)}</p>
                                                     <Divider />
                                                 </div>
                                             )
                                         }
                                         <p className="total-title">Total:</p>
                                         <p className="total">${formateoCantidad(nPrecio)}</p>
+                                        {
+                                            errors.carritoErr ? <span className="span-error">El carrito esta vacio</span> : <></>
+                                        }
                                         <Divider />
                                     </div>
                                     <div className="container-btn">
                                         <div className="container-radius">
                                             <FormControl component="fieldset">
                                                 <RadioGroup name="metodoPago" onChange={handleInputChange} >
-                                                    <FormControlLabel value="transferencia" control={<Radio color="default" onChange={handleRadioChange} />} label="Transferencia Bancaria, Pago movil, Zelle" />
+                                                    <FormControlLabel value="Transferencia" control={<Radio color="default" onChange={handleRadioChange} />} label="Transferencia Bancaria, Pago movil, Zelle" />
                                                     {
-                                                        radio === 'transferencia' ? <><span className="span-radio"> Realiza tu pago directamente en cualquiera de nuestras entidades bancarias. Puedes cancelar en Dolares (USD) o en Bolívares (Bs) al respectivo cambio del día. Al realizar pedido y la transferencia, envíanos el comprobante a opandre123@gmail.com o al +584241917939</span></> : <></>
+                                                        radio === 'Transferencia' ? <><span className="span-radio"> Realiza tu pago directamente en cualquiera de nuestras entidades bancarias. Puedes cancelar en Dolares (USD) o en Bolívares (Bs) al respectivo cambio del día. Al realizar pedido y la transferencia, envíanos el comprobante a opandre123@gmail.com o al +584241917939</span></> : <></>
                                                     }
-                                                    <FormControlLabel value="efectivo" control={<Radio color="default" onChange={handleRadioChange} />} label="Pago en efectivo" />
+                                                    <FormControlLabel value="Efectivo" control={<Radio color="default" onChange={handleRadioChange} />} label="Pago en efectivo" />
                                                     {
-                                                        radio === 'efectivo' ? <><span className="span-radio"> Paga por Punto de Venta o Cash al momento de la entrega o por nuestra tienda.</span> </> : <></>
+                                                        radio === 'Efectivo' ? <><span className="span-radio"> Paga por Punto de Venta o Cash al momento de la entrega o por nuestra tienda.</span> </> : <></>
                                                     }
                                                     <FormControlLabel value="Paypal" disabled control={<Radio color="default" />} label="Paypal" />
                                                 </RadioGroup>
                                             </FormControl>
+                                            {
+                                                errors.radio ? <span className="span-error">Seleccionar un metodo de pago</span> : <></>
+                                            }
                                         </div>
                                         <span className="span">Una vez realizado su pedido revisar su correo electronico y reportar
                                         el pago via whatsapp
                                         </span>
-                                        <h6 onClick={onSubmit} className="btn-realizar-pedido">Realizar Pedido</h6>
+                                        {
+                                            loading ? <div style={{ marginTop: '15px' }}><h6 className="btn-realizar-pedido-disabled">Realizar Pedido</h6></div> : <h6 onClick={onSubmit} className="btn-realizar-pedido">Realizar Pedido</h6>
+                                        }
                                     </div>
                                 </div>
                             </div>

@@ -1,9 +1,9 @@
 import './style.css'
 
-export default function Input({ name, onChange }) {
+export default function Input({ name, onChange, type }) {
     return (
         <>
-            <input name={name} onChange={onChange} required />
+            <input name={name} type={type} onChange={onChange} className="inputUpe" required />
         </>
     )
 }

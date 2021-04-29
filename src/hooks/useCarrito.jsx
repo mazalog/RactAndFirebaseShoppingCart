@@ -107,9 +107,7 @@ export function useCarrito(){
     0
   );
 
-  
-
-  const pagar=()=>{
+    const pagar=()=>{
     if(carrito.length>0){
     const array = [];
     carrito.forEach((doc) => {

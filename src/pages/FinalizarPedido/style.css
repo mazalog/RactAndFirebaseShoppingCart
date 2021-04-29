@@ -11,7 +11,7 @@
     align-items: center;
     min-height: 3rem;
 }
-.container-inputs{
+.container-inputs ,.container-detalles{
     padding: 7px;
     width: 100%;
 }
@@ -56,6 +56,15 @@
     font-weight: 500;
     color: gray;
 }
+.container-radius{
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.span-radio{
+    margin: 12px;
+    color: gray;
+}
 .container-btn{
     margin: 30px;
     text-align: center;
@@ -71,5 +80,28 @@
     margin-top: 1rem;
     border: 1px solid gray;
     padding: 6px;
+    border-radius: 3px;
+    transition: 0.5s ease;
 }
-
+.btn-realizar-pedido:hover{
+ background-color: rgba(128, 128, 128, 0.068);
+}
+.subtitle{
+    font-weight: 400;
+    color: gray;
+    margin-top: 16px;
+    margin-bottom: 6px;
+}
+.detalles{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.tabla-detalles{
+ width: 100%;
+}
+.tabla-detalles .aliDerecha{
+    text-align: right;
+   }
+.title-th{
+    padding-top: 20px;
+}

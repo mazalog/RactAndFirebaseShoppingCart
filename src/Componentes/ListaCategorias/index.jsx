@@ -22,7 +22,7 @@ export default function   listaCategorias({classes,seleccionarCategoria}){
               {" "}
               <KitchenIcon color="primary" />
             </ListItemIcon>
-            <ListItemText primary="Categorias" />
+            <ListItemText primary="Categorías" />
           </ListItem>
         </List>
         <Divider />

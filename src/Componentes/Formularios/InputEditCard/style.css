@@ -1,0 +1,9 @@
+.editCard{
+padding: 1%;
+width: 100%;
+height: 30px;
+max-height: 30px;
+text-align: center;
+border: 1px solid rgba(128, 128, 128, 0.562);
+border-radius: 12px;
+}

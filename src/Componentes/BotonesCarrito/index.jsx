@@ -15,7 +15,7 @@ export default function SimpleBottomNavigation(props) {
   
   
   const classes = useStyles();
-  const {pagar}=useCarrito()
+  const {carrito,pagar}=useCarrito()
   
 
   const [,navigate]=useLocation()
@@ -23,9 +23,12 @@ export default function SimpleBottomNavigation(props) {
   const {cerrarModalCarrito}=useModalCarrito()
   
   const navegar=()=>{
+    if(carrito.length!==0){
     cerrarModalCarrito()
     scroll.scrollToTop()
     navigate('/FinalizarPedido')
+    }
+
   }
   
   return (
@@ -35,7 +38,7 @@ export default function SimpleBottomNavigation(props) {
       className={classes.root}
     >
       <div className="btn-navi">
-         <div onClick={navegar} className="container-"><h6 className="wha">Finalizar Compra </h6></div>   
+         <div onClick={navegar} className="container-"><h6 className="fi">Finalizar Compra </h6></div>   
          <div style={{marginTop:'6px'}} onClick={pagar} className="container-wha "><h6 className="wha">Realizar pedido por whatsapp</h6></div>         
       </div>
    

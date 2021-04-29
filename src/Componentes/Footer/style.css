@@ -1,0 +1,14 @@
+.footer{
+    margin-top: 1rem;
+    height:70px;
+    width: 100%;
+    background:rgb(255 241 118) ;
+    text-align: center;
+    display: grid;
+    align-items: center;
+    border-radius: 4px;
+    font-weight: 300;
+}
+.footer h6{
+    font-size: 14px;
+}

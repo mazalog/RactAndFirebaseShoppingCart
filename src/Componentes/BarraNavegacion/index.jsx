@@ -4,6 +4,7 @@ import {useTheme } from "@material-ui/core/styles";
 import {useStyles} from './style'
 import {useLocation} from 'wouter'
 import listaCategorias from '../ListaCategorias'
+import {animateScroll as scroll} from 'react-scroll'
 
 const BarraNavegacion=({container,handleDrawerToggle,mobileOpen})=>{
 
@@ -13,6 +14,7 @@ const BarraNavegacion=({container,handleDrawerToggle,mobileOpen})=>{
     const [,navigate]=useLocation()
   
     const seleccionarCategoria=(categoria)=>{
+      scroll.scrollToTop()
       if(mobileOpen){
         handleDrawerToggle()
         if(categoria==='todos') return navigate(`/`)

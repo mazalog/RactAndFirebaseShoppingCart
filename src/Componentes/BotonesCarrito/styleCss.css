@@ -8,6 +8,11 @@
     color: rgb(255, 255, 255);
     cursor: pointer;
 }
+.fi{
+    text-align: center;
+    color:gray;
+    cursor: pointer;
+    transition: 0.8s ease;}
 .container-wha{
     margin: 8px;
     cursor: pointer;
@@ -17,22 +22,23 @@
     border-radius: 3px;
     background:rgb(31, 187, 83);
     transition: 0.5s ease;
-    box-shadow: 0 10px 25px rgb(0 0 0 / 30%);
+    /* box-shadow: 0 10px 25px rgb(0 0 0 / 30%); */
 }
 .container-{
+    text-align: center;
     margin: 8px;
     cursor: pointer;
     padding: 5px;
+    justify-content: center;
     display: flex;
     align-items: center;
     border-radius: 3px;
-    background:rgb(31, 80, 187);
     transition: 0.5s ease;
-    box-shadow: 0 10px 25px rgb(0 0 0 / 30%);
+    border: 1px solid gray;
 }
 .container-wha:hover{
     background-color: rgb(0, 0, 0);
 }
 .container-:hover{
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.116);
 }

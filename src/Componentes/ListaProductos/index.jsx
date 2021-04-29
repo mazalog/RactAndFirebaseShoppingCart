@@ -1,20 +1,28 @@
 import React from "react"
-import {Grid,Box,IconButton} from "@material-ui/core"
+import {Grid} from "@material-ui/core"
 import Alert from "@material-ui/lab/Alert";
-import AddIcon from "@material-ui/icons/PostAdd"
 import {useCarrito} from "../../hooks/useCarrito"
 import {useModalCarrito} from '../../hooks/useModalCarrito'
 import Producto from "../Producto"; 
 import Car from "../Car"
 import Alerta from '../Alerta'
 
+
 const ListaProductos = ({productos}) => {
   
-  const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad}=useCarrito()  
+  const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad,carrito,eliminarProCarrito}=useCarrito()  
 
   const {abreModalCarrito}=useModalCarrito()
 
   const addprocarrito=(producto)=> addProCarrito(producto)
+
+  const onClick=(inputValue)=>{
+    const sum=true
+    const dato = carrito.filter(pro => pro.producto === inputValue.name)
+   
+      addProCarrito(dato[0], parseFloat(inputValue.value),sum)
+    
+  }
 
   return (
     <>
@@ -23,6 +31,7 @@ const ListaProductos = ({productos}) => {
             {productos.map((item, index) => (
               <Grid key={index} item xs={6} sm={6} md={3}>
                 <Producto
+                onClick={onClick}
                 addprocarrito={addprocarrito}
                 item={item}
                 />
@@ -34,15 +43,6 @@ const ListaProductos = ({productos}) => {
                <Alert severity="error">Sin articulos que mostrar.</Alert>
          </Grid>
         )}
-       <Grid container spacing={1}>
-          <Grid container justify="center" item xs={12}>
-            <Box margin={4} marginBottom={15}>
-              <IconButton aria-label="Mas" color="primary">
-                <AddIcon fontSize="large"></AddIcon>
-              </IconButton>
-            </Box>
-          </Grid>
-        </Grid>
 
         <div className="carrito">
               <Car

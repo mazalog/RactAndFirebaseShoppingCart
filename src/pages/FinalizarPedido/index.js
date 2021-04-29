@@ -5,20 +5,40 @@ import { Divider } from '@material-ui/core'
 import Input from '../../Componentes/Formularios/Input'
 import TextTarea from '../../Componentes/Formularios/Textarea'
 import { useState } from 'react'
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 export default function FinalizarPedidoPage() {
-    const { carrito, nPrecio } = useCarrito()
 
-    const valoresIniciales = { nombreApellido: '', telefono: '', correo: '', direccion: '', nota: '' }
+    const { carrito, nPrecio, formateoCantidad } = useCarrito()
+
+    const valoresIniciales = {
+        nombreApellido: ''
+        , telefono: '',
+        correo: '',
+        direccion: '',
+        nota: '',
+        metodoPago: '',
+        fecha: new Date(),
+        carrito: carrito
+    }
 
     const [data, setData] = useState(valoresIniciales)
+    const [radio, setRadio] = useState('')
 
     const handleInputChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
-        console.log(data)
     }
 
+    const handleRadioChange = (e) => {
+        setRadio(e.target.value)
+    }
 
+    const onSubmit = () => {
+        console.log(data)
+    }
 
     return (
         <>
@@ -55,15 +75,30 @@ export default function FinalizarPedidoPage() {
                                                 </div>
                                             )
                                         }
-                                        <p className="total-title">Total</p>
-                                        <p className="total">${nPrecio}</p>
+                                        <p className="total-title">Total:</p>
+                                        <p className="total">${formateoCantidad(nPrecio)}</p>
                                         <Divider />
                                     </div>
                                     <div className="container-btn">
+                                        <div className="container-radius">
+                                            <FormControl component="fieldset">
+                                                <RadioGroup name="metodoPago" onChange={handleInputChange} >
+                                                    <FormControlLabel value="transferencia" control={<Radio color="default" onChange={handleRadioChange} />} label="Transferencia Bancaria, Pago movil, Zelle" />
+                                                    {
+                                                        radio === 'transferencia' ? <><span className="span-radio"> Realiza tu pago directamente en cualquiera de nuestras entidades bancarias. Puedes cancelar en Dolares (USD) o en Bolívares (Bs) al respectivo cambio del día. Al realizar pedido y la transferencia, envíanos el comprobante a opandre123@gmail.com o al +584241917939</span></> : <></>
+                                                    }
+                                                    <FormControlLabel value="efectivo" control={<Radio color="default" onChange={handleRadioChange} />} label="Pago en efectivo" />
+                                                    {
+                                                        radio === 'efectivo' ? <><span className="span-radio"> Paga por Punto de Venta o Cash al momento de la entrega o por nuestra tienda.</span> </> : <></>
+                                                    }
+                                                    <FormControlLabel value="Paypal" disabled control={<Radio color="default" />} label="Paypal" />
+                                                </RadioGroup>
+                                            </FormControl>
+                                        </div>
                                         <span className="span">Una vez realizado su pedido revisar su correo electronico y reportar
                                         el pago via whatsapp
                                         </span>
-                                        <h6 className="btn-realizar-pedido">Realizar Pedido</h6>
+                                        <h6 onClick={onSubmit} className="btn-realizar-pedido">Realizar Pedido</h6>
                                     </div>
                                 </div>
                             </div>

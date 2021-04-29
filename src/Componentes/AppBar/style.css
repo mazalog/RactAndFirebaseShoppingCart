@@ -1,0 +1,28 @@
+.a-carrito{
+  display: grid;
+  width: 50%;
+  padding-right: 20px;
+  justify-items: right;
+  justify-content: right;
+  text-align: right;
+}
+.a-logo{
+    width: 50%;
+}
+.a-carrito button{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    outline: none;
+    border:none;
+    background:none;
+    border-radius: 3px;
+}
+.a-carrito button:focus{
+outline: none;
+}
+.a-carrito p{
+    margin-bottom: 0px;
+    margin-right: 5px;
+}

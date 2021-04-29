@@ -15,7 +15,9 @@ import BusquedaProducto from '../../pages/BusquedaProducto'
 import  Home from "../../pages/Home";
 import  SingleProducto from "../../pages/SingleProducto";
 import FinalizarPedidoPage from "../../pages/FinalizarPedido";
-
+import OrdenPage from "../../pages/FinalizarPedido/Orden";
+import Footer from "../Footer";
+import Services from "../Services";
 
 
 function Panel(props) {
@@ -94,7 +96,11 @@ function Panel(props) {
             component={FinalizarPedidoPage}
             path="/FinalizarPedido"
             />
-
+            <Route
+             component={OrdenPage}
+             path="/FinalizarPedido/Orden"
+            />
+            
             <div className="menu">
               <IconButton
                 onClick={() =>handleDrawerToggle()}
@@ -115,6 +121,8 @@ function Panel(props) {
               />
 
           </div>
+          <Services/>
+          <Footer/>
       </main>
     </div>
   )

@@ -9,14 +9,11 @@ export function useCarrito(){
 
   const [alertaDeleteProducto,setAlertaDeleteProducto]=useState(false)
 
-  
-
-  const addProCarrito =(producto)=> {
-
+  const addProCarrito =(producto,cantidad,sum)=> {
     let productoActual = {
       producto: producto.producto,
       total: producto.precio,
-      cantidad: 1,
+      cantidad: cantidad?cantidad:1,
       precio: producto.precio,
       url: producto.url
     }
@@ -31,8 +28,8 @@ export function useCarrito(){
 
          seguir = false;
 
-         let totalActual = parseFloat(carro.total) + parseFloat(producto.precio);
-         let totalCantidad = parseFloat(carro.cantidad) + 1;
+         let totalActual =cantidad? parseFloat(carro.total) + parseFloat(producto.precio)*cantidad:parseFloat(carro.total) + parseFloat(producto.precio);
+         let totalCantidad =sum?cantidad+parseFloat(carro.cantidad)  : cantidad?cantidad:parseFloat(carro.cantidad) + 1;
          const dato = {
            producto: producto.producto,
            total: totalActual,
@@ -60,19 +57,19 @@ export function useCarrito(){
 
   const vaciarCarrito = () => setCarrito([])
 
-  const eliminarProCarrito = (producto) => {
-
-    if (producto.cantidad > 1) {
+  const eliminarProCarrito = (producto,cantidad) => {
+    let can=cantidad? cantidad: cantidad===0?producto.cantidad:1
+    if (producto.cantidad > can) {
 
       carrito.forEach((carro) => {
         if (carro.producto === producto.producto) {
           const dato = {
             producto: producto.producto,
-            total: producto.total - carro.precio,
-            cantidad: producto.cantidad - 1,
+            total:cantidad?carro.total-(producto.precio*cantidad) :carro.total - carro.precio,
+            cantidad:cantidad?cantidad:producto.cantidad - 1,
             precio: carro.precio,
             url: carro.url,
-          };
+          }
           setCarrito(
             carrito.map((carr) =>
               carr.producto === producto.producto ? dato : carr
@@ -80,7 +77,7 @@ export function useCarrito(){
           )
           setAlertaDeleteProducto(true)
         }
-      });
+      })
     } else {
       setCarrito(carrito.filter((carro) => carro.producto !== producto.producto))
       setAlertaDeleteProducto(true)
@@ -113,7 +110,7 @@ export function useCarrito(){
   
 
   const pagar=()=>{
-
+    if(carrito.length>0){
     const array = [];
     carrito.forEach((doc) => {
      array.push(
@@ -141,10 +138,11 @@ export function useCarrito(){
 
    nPrecio = formateoCantidad(nPrecio);
 
-   window.open(
-     `https://api.whatsapp.com/send?phone=584241917939&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
-     "_blank"
-   );
+    window.open(
+      `https://api.whatsapp.com/send?phone=584241917939&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
+      "_blank"
+    ); 
+  }
    vaciarCarrito();
   }
 
@@ -160,7 +158,8 @@ export function useCarrito(){
            nPrecio,
            alertaDeleteProducto,
            cerrarAlertaDeleteProducto,
-           pagar
+           pagar,
+           formateoCantidad
           }
 
 }

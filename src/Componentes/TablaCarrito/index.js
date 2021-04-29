@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Paper, Grid, IconButton, Tooltip } from "@material-ui/core/";
+import { Grid, IconButton, Tooltip } from "@material-ui/core/";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -13,16 +12,13 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import CloseIcon from "@material-ui/icons/Close";
 import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
 import BotonesCarrito from "../BotonesCarrito";
+import CheckIcon from '@material-ui/icons/Check'
 import Alerta from '../Alerta'
 import { useCarrito } from "../../hooks/useCarrito";
-import { useStyles } from './style'
+import InputEdit from "../Formularios/InputEdit";
 
 export default function SpanningTable(props) {
-
-
-  const classes = useStyles();
 
   function ccyFormat(num) {
     return `${num.toFixed(2)}`;
@@ -44,14 +40,37 @@ export default function SpanningTable(props) {
     eliminarProCarrito(producto)
   }
 
+  const [clickadd, setClickAdd] = useState(0)
 
+  const handleInputChange = (e) => {
+    if (e.target.value === '') e.target.value = parseFloat(0)
+    if (e.target.value >= 0) {
+      const dato = carrito.filter(pro => pro.producto === e.target.name)
+      if (dato[0].cantidad < e.target.value) {
+        addProCarrito(dato[0], parseFloat(e.target.value))
+      } else {
+        const cant = e.target.value ? e.target.value : 0
+        eliminarProCarrito(dato[0], parseFloat(cant))
+      }
+    }
+
+  }
+
+  const handleResetCLick = () => {
+    setClickAdd(0)
+  }
+
+  const handleClickadd = (item) => {
+    setClickAdd(clickadd + 1)
+    addProCarrito(item)
+  }
 
   return (
     <div>
       <DialogTitle id="form-dialog-title">
         <Grid container spacing={1}>
           <Grid container justify="flex-start" item xs={8}>
-            <h4 onClick={pagar} style={{ fontWeight: '600', color: 'gray', cursor: 'pointer' }}> {ccyFormat(parseFloat(nPrecio))}$ de  ({nCantidad}) articulos</h4>
+            <h4 style={{ fontWeight: '600', color: 'gray', cursor: 'pointer' }}> {ccyFormat(parseFloat(nPrecio))}$ de  ({nCantidad}) articulos</h4>
           </Grid>
           <Grid container justify="flex-end" item xs={4}>
             <Tooltip title="Cerrar Carrito">
@@ -79,7 +98,7 @@ export default function SpanningTable(props) {
               <TableRow>
                 <TableCell>Producto</TableCell>
                 <TableCell align="right">Precio</TableCell>
-                <TableCell align="right">Cantidad</TableCell>
+                <TableCell align="left">Cantidad</TableCell>
                 <TableCell align="right">Sum</TableCell>
               </TableRow>
             </TableHead>
@@ -90,30 +109,44 @@ export default function SpanningTable(props) {
                     <Avatar alt="Remy Sharp" src={item.url} />
                     {item.producto}
                   </TableCell>
-                  <TableCell align="right">{item.precio}</TableCell>
+                  <TableCell align="right">${item.precio}</TableCell>
                   <TableCell align="left">
-                    <IconButton
-                      aria-label="dowm"
-                      size="small"
-                      color="initial"
-                      onClick={() => eliminarprocarrito(item)}
-                    >
-                      <RemoveIcon fontSize="small"></RemoveIcon>
-                    </IconButton>
-                    {item.cantidad}
-                    <IconButton
-                      aria-label="up"
-                      size="small"
-                      color="initial"
-                      onClick={() =>
-                        addProCarrito(item)
-                      }
-                    >
-                      <AddIcon fontSize="small"></AddIcon>
-                    </IconButton>
+
+                    {
+                      clickadd === 5 ? <><InputEdit value={item.cantidad} name={item.producto} onChange={handleInputChange} />
+                        <IconButton
+                          size="small"
+                          color="initial"
+                          onClick={handleResetCLick}
+                        >
+                          <CheckIcon fontSize="small" />
+                        </IconButton>
+                      </> : <>
+                        <IconButton
+                          aria-label="dowm"
+                          size="small"
+                          color="initial"
+                          onClick={() => eliminarprocarrito(item)}
+                        >
+                          <RemoveIcon fontSize="small"></RemoveIcon>
+                        </IconButton>
+                        {item.cantidad}
+                        <IconButton
+                          aria-label="up"
+                          size="small"
+                          color="initial"
+                          onClick={() =>
+                            handleClickadd(item)
+                          }
+                        >
+                          <AddIcon fontSize="small"></AddIcon>
+                        </IconButton>
+                      </>
+                    }
+
                   </TableCell>
                   <TableCell align="right">
-                    {ccyFormat(parseFloat(item.cantidad * item.precio))}
+                    ${ccyFormat(parseFloat(item.cantidad * item.precio))}
                   </TableCell>
                 </TableRow>
               ))}

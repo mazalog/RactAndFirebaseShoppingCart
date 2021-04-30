@@ -9,7 +9,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import {useStyles} from './style'
-import {useLocation,} from 'wouter'
+import {Link, useLocation,} from 'wouter'
 import { animateScroll as scroll } from 'react-scroll';
 import InputEdit from "../Formularios/InputEditCard";
 import './style.css'
@@ -30,7 +30,7 @@ export default function RecipeReviewCard(props) {
     const [,navigate]=useLocation()
 
     const verProducto=(producto)=>{
-        scroll.scrollToTop()
+    scroll.scrollToTop()
     navigate(`/producto/${producto}`)
     }
 
@@ -49,12 +49,21 @@ export default function RecipeReviewCard(props) {
     }
 
     const onClick=()=>{
-      if(parseFloat(inputValue.value)>0){
-        props.onClick(inputValue)
-        setClicks(0)
-      }else{
-        console.log('Error')
-      }
+      const numero=parseFloat(inputValue.value)
+        if (isNaN(numero)){
+            console.log ("Ups... " + numero + " no es un número.");
+        } else {
+            if (numero % 1 === 0) {
+               if(numero>0){
+                 props.onClick(inputValue)
+                 setClicks(0)
+                 }else{
+                   console.log('Error')
+                 }
+            } else {
+                console.log("Es un numero decimal");
+            }
+        }
     }
 
   return (
@@ -65,17 +74,21 @@ export default function RecipeReviewCard(props) {
         >
           <div className={classes.titulo}>
           <Typography variant="subtitle1" color="textSecondary" >
+
             {props.item.producto}
           </Typography>
           </div>
         </Box>
-        <CardMedia
+        <div style={{cursor:'pointer'}}>
+          <CardMedia
           id="img-carta"
           className={classes.media}
           image={props.item.url}
           title={props.item.producto}
           onClick={()=>verProducto(props.item.producto)}
-        />
+        /> 
+        </div>
+
         <CardActions disableSpacing>
           <Grid container spacing={1}>
             <Grid container justify="center" item xs={6}>

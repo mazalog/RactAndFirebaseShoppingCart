@@ -1,6 +1,7 @@
 
     const listaproductos = [
     {
+      id:1,
       producto: "Mayonesa Mavesa 900gr",
       precio: 7.19,
       url:
@@ -8,6 +9,7 @@
       categoria: "viveres",
     },
     {
+      id:2,
       producto: "Harina Juana 1kg",
       precio: 1.79,
       url:
@@ -15,6 +17,7 @@
       categoria: "viveres",
     },
     {
+      id:3,
       producto: "Arroz Mary tradicional",
       precio: 1.45,
       url:
@@ -22,6 +25,7 @@
       categoria: "viveres",
     },
     {
+      id:4,
       producto: "Docena de Huevo",
       precio: 2.5,
       url:
@@ -29,6 +33,7 @@
       categoria: "proteinas",
     },
     {
+      id:5,
       producto: "Aceite 1lt Mazeite",
       precio: 3.23,
       url:
@@ -36,6 +41,7 @@
       categoria: "viveres",
     },
     {
+      id:6,
       producto: "Golden Kolita 1.5 Lts",
       precio: 1.94,
       url:
@@ -43,6 +49,7 @@
       categoria: "bebidas",
     },
     {
+      id:7,
       producto: "Tody 400 gr",
       precio: 6.66,
       url:
@@ -50,6 +57,7 @@
       categoria: "viveres",
     },
     {
+      id:8,
       producto: "Coca cola 2lt",
       precio: 3.61,
       url:
@@ -57,6 +65,7 @@
       categoria: "bebidas",
     },
     {
+      id:9,
       producto: "Leche descremada 1 lts",
       precio: 2.65,
       url:
@@ -64,6 +73,7 @@
       categoria: "bebidas",
     },
     {
+      id:10,
       producto: "Riquesa Chedar 300gr",
       precio: 6.25,
       url:
@@ -71,6 +81,7 @@
       categoria: "viveres",
     },
     {
+      id:11,
       producto: "Margarina Mavesa 500gr",
       precio: 3.06,
       url:
@@ -78,6 +89,7 @@
       categoria: "viveres",
     },
     {
+      id:12,
       producto: "Mezcla para Torta Renata",
       precio: 2.12,
       url:
@@ -86,6 +98,7 @@
     },
 
     {
+      id:13,
       producto: "Harina de Trigo Doña Maria",
       precio: 1.8,
       url:
@@ -93,6 +106,7 @@
       categoria: "viveres",
     },
     {
+      id:14,
       producto: "Papel Higienico Rosal Plis",
       precio: 1.5,
       url:
@@ -100,6 +114,7 @@
       categoria: "limpieza e higiene",
     },
     {
+      id:15,
       producto: "Jabon Azul Las Llaves",
       precio: 1.38,
       url:
@@ -107,6 +122,7 @@
       categoria: "limpieza e higiene",
     },
     {
+      id:16,
       producto: "Shampoo Drene 350ml",
       precio: 3,
       url:
@@ -114,6 +130,7 @@
       categoria: "limpieza e higiene",
     },
     {
+      id:17,
       producto: "Galletas Charmy Fresa",
       precio: 1.38,
       url:
@@ -121,6 +138,7 @@
       categoria: "viveres",
     },
     {
+      id:18,
       producto: "Jugo de Naranja 1.5 lt Yukery",
       precio: 3.04,
       url:
@@ -129,6 +147,7 @@
     },
 
     {
+      id:19,
       producto: "Cerveza Polarcita x 36",
       precio: 29.99,
       url:
@@ -137,6 +156,7 @@
     },
 
     {
+      id:20,
       producto: "Mortadela Especial Plumrose",
       precio: 3.75,
       url:
@@ -145,6 +165,7 @@
     },
 
     {
+      id:21,
       producto: "Queso Paisa Blanco 500gr",
       precio: 4.48,
       url:
@@ -153,6 +174,7 @@
     },
 
     {
+      id:22,
       producto: "Pechuga de Pollo 500gr",
       precio: 1.96,
       url:
@@ -160,6 +182,7 @@
       categoria: "proteinas",
     },
     {
+      id:23,
       producto: "Combo carne Premiun",
       precio: 20.81,
       url:
@@ -168,6 +191,7 @@
     },
 
     {
+      id:24,
       producto: "Harina de maiz y arroz Pan",
       precio: 1.5,
       url:
@@ -176,12 +200,61 @@
     },
 
     {
+      id:25,
       producto: "Cambur Criollo",
       precio: 0.96,
       url:
         "https://ik.imagekit.io/xdqklh2jgw/media/products/1016/1016.png?tr=w-180",
       categoria: "frutas y verduras",
     },
+    {
+      id:26,
+      producto: "Oreo Chocolate 108 gr",
+      precio: 1.50,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1273/oreo.png?tr=w-180",
+       categoria:'viveres'
+      },
+    {
+      id:27,
+      producto: "Margariana chiflon",
+      precio: 2.68,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1769/1769.png?tr=w-180",
+      categoria:'viveres'
+      },
+    {
+      id:28,
+      producto: "Galletas Sodas",
+      precio: 1.90,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/402/402.png?tr=w-180",
+     categoria:'viveres'
+      },
+    {
+      id:29,
+      producto: "Corn Flakes 230 gr ",
+      precio: 2,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",
+     categoria:'viveres'
+      },
+    {
+      id:30,
+      producto: "Gatsy Pescando 1kg",
+      precio: 8.4,
+      url:
+        " https://ik.imagekit.io/xdqklh2jgw/media/products/12413/gatsy-pescado-1kg_lf.png?tr=w-180",
+    categoria:'Mascotas'
+      },
+    {
+      id:31,
+      producto: "Pasta vermicelli",
+      precio: 0.78,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1861/V2-vermicelli-mary.png?tr=w-180",
+    categoria:'viveres'
+      },
   ];
 
   export default function getProductos(){

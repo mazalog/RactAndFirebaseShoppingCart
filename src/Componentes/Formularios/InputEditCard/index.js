@@ -7,8 +7,10 @@ export default function InputEdit({ value, onChange, name }) {
                 onChange={onChange}
                 defaultValue={value}
                 className="editCard"
-                type="text"
-                name={name} />
+                type="number"
+                name={name}
+                max="99"
+            />
         </>
     )
 }

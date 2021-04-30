@@ -4,12 +4,12 @@ import Typography from '@material-ui/core/Typography'
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import Button from '@material-ui/core/Button'
 import './index.css'
-import {useProductos} from '../../hooks/useProductos'
 import {useCarrito} from '../../hooks/useCarrito'
 import {useModalCarrito} from '../../hooks/useModalCarrito'
 import Car from '../../Componentes/Car'
 import ListaProductos from '../../Componentes/ListaProductos'
 import Alerta from '../../Componentes/Alerta'
+import getProductos from '../../services/getProductos'
 
 
 const SingleProducto=({params})=>{
@@ -22,8 +22,7 @@ const SingleProducto=({params})=>{
     },
   })
 
-    const {productos}=useProductos()
-
+    const productos=getProductos()
 
     const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad}=useCarrito()  
 
@@ -31,28 +30,36 @@ const SingleProducto=({params})=>{
   
     const addprocarrito=(producto)=> addProCarrito(producto)
 
-    const producto=productos.find(producto=>producto.producto===decodeURI(params.producto))
-
+    const producto = productos.find(producto => producto.producto === decodeURI(params.producto))
 
 
     const [proRandom,setProRandom]=React.useState([])
 
     const masProductos=()=>{
-          const productosRandom=[]
+           const productosRandom=[]
            for(var n = 0; n < 6; n++) {
-           const mas= productos[Math.floor(Math.random() * productos.length)]
-            productosRandom.push({...mas})
+            const mas= productos[Math.floor(Math.random() * productos.length)]
+            const exist=productosRandom.some(doc=>doc.producto===mas.producto)
+            if(exist){
+              const alter= productos[Math.floor(Math.random() * productos.length)]
+              productosRandom.push({...alter})
+            }else{
+              productosRandom.push({...mas})
+            }
            }
            setProRandom(productosRandom)
     }
 
     useEffect(()=>{
-    
      masProductos()
-    },[])
+    },[params.producto])
+
+
     function ccyFormat(num) {
         return `${num.toFixed(2)}`;
-      }
+     }
+
+
 
     return (
         <>
@@ -105,8 +112,8 @@ const SingleProducto=({params})=>{
                 <Typography variant="h6" color="textSecondary">
                    Completa tu compra con estos productos: 
                 </Typography>
-                <br/><br/>
-                <ListaProductos productos={proRandom} />
+                <br/><br/>                
+               <ListaProductos productos={proRandom} />  
             </Grid>
       </Grid>
 

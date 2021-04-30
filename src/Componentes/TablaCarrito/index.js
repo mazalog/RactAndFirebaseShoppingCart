@@ -43,17 +43,27 @@ export default function SpanningTable(props) {
   const [clickadd, setClickAdd] = useState(0)
 
   const handleInputChange = (e) => {
+
     if (e.target.value === '') e.target.value = parseFloat(0)
-    if (e.target.value >= 0) {
-      const dato = carrito.filter(pro => pro.producto === e.target.name)
-      if (dato[0].cantidad < e.target.value) {
-        addProCarrito(dato[0], parseFloat(e.target.value))
+    const numero = parseFloat(e.target.value)
+
+    if (isNaN(numero)) {
+      // console.log('No es un numero')
+    } else {
+      if (numero % 1 === 0) {
+        if (e.target.value >= 0) {
+          const dato = carrito.filter(pro => pro.producto === e.target.name)
+          if (dato[0].cantidad < e.target.value) {
+            addProCarrito(dato[0], parseFloat(e.target.value))
+          } else {
+            const cant = e.target.value ? e.target.value : 0
+            eliminarProCarrito(dato[0], parseFloat(cant))
+          }
+        }
       } else {
-        const cant = e.target.value ? e.target.value : 0
-        eliminarProCarrito(dato[0], parseFloat(cant))
+        // console.log("Es un numero decimal");
       }
     }
-
   }
 
   const handleResetCLick = () => {

@@ -4,7 +4,7 @@ import { CssBaseline,IconButton ,Grid, Box, Typography,Fab} from "@material-ui/c
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import MenuIcon from "@material-ui/icons/Menu";
 import { useStyles } from "./style"
-import {Route} from 'wouter'
+import {Route,Switch} from 'wouter'
 import {useModalCarrito} from '../../hooks/useModalCarrito'
 import AppBar from "../AppBar"
 import BarraNavegacion from "../BarraNavegacion"
@@ -72,22 +72,19 @@ function Panel(props) {
                 </Box>
               </Grid>
             </Grid>
-            
+            <Switch>
             <Route
             component={Home}
             path="/"
             />
-
             <Route
              component={BusquedaCategoria}
              path="/categorias/:categoria"
             />
-
             <Route
             component={BusquedaProducto}
             path="/busqueda/:producto"
             />
-
             <Route
             component={SingleProducto}
             path="/producto/:producto"
@@ -100,7 +97,7 @@ function Panel(props) {
              component={OrdenPage}
              path="/FinalizarPedido/Orden/:orden"
             />
-            
+            </Switch>
             <div className="menu">
               <IconButton
                 onClick={() =>handleDrawerToggle()}

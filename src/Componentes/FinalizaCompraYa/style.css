@@ -1,0 +1,32 @@
+
+.finalizar{
+    background:#fff176;
+    backdrop-filter:blur(5px);
+    bottom:0;
+    border-top:3px solid #eee;
+    height:40px;
+    position:sticky;
+    width:100%;
+    display:none;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+.finalizar a{
+    cursor:pointer;
+    align-items:center;
+    display:flex;
+    flex: 1 1 auto;
+    height:100%;
+    justify-content:center;
+    text-decoration: none;
+}
+.finalizar h6{
+  color: rgb(76 175 80);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+@media screen and (max-width: 540px){
+    .finalizar{
+        display:flex;
+    }
+}

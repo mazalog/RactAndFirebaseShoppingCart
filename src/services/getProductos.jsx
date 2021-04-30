@@ -9,6 +9,14 @@
       categoria: "viveres",
     },
     {
+      id:29,
+      producto: "Corn Flakes 230 gr ",
+      precio: 2,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",
+     categoria:'viveres'
+      },
+    {
       id:2,
       producto: "Harina Juana 1kg",
       precio: 1.79,
@@ -24,6 +32,14 @@
         "https://ik.imagekit.io/xdqklh2jgw/media/products/2535/Mary_arroz_Tradicional_.png?tr=w-180",
       categoria: "viveres",
     },
+        {
+      id:26,
+      producto: "Oreo Chocolate 108 gr",
+      precio: 1.50,
+      url:
+        "https://ik.imagekit.io/xdqklh2jgw/media/products/1273/oreo.png?tr=w-180",
+       categoria:'viveres'
+      },
     {
       id:4,
       producto: "Docena de Huevo",
@@ -207,14 +223,7 @@
         "https://ik.imagekit.io/xdqklh2jgw/media/products/1016/1016.png?tr=w-180",
       categoria: "frutas y verduras",
     },
-    {
-      id:26,
-      producto: "Oreo Chocolate 108 gr",
-      precio: 1.50,
-      url:
-        "https://ik.imagekit.io/xdqklh2jgw/media/products/1273/oreo.png?tr=w-180",
-       categoria:'viveres'
-      },
+
     {
       id:27,
       producto: "Margariana chiflon",
@@ -231,14 +240,7 @@
         "https://ik.imagekit.io/xdqklh2jgw/media/products/402/402.png?tr=w-180",
      categoria:'viveres'
       },
-    {
-      id:29,
-      producto: "Corn Flakes 230 gr ",
-      precio: 2,
-      url:
-        "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",
-     categoria:'viveres'
-      },
+
     {
       id:30,
       producto: "Gatsy Pescando 1kg",

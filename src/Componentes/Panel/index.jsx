@@ -17,7 +17,7 @@ import  SingleProducto from "../../pages/SingleProducto";
 import FinalizarPedidoPage from "../../pages/FinalizarPedido";
 import OrdenPage from "../../pages/FinalizarPedido/Orden";
 import Footer from "../Footer";
-import Services from "../Services";
+import Services from "../Services"
 
 
 function Panel(props) {

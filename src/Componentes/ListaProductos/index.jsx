@@ -6,11 +6,12 @@ import {useModalCarrito} from '../../hooks/useModalCarrito'
 import Producto from "../Producto"; 
 import Car from "../Car"
 import Alerta from '../Alerta'
+import FinalizaCompraYa from "../FinalizaCompraYa";
 
 
 const ListaProductos = ({productos}) => {
   
-  const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad,carrito,eliminarProCarrito}=useCarrito()  
+  const {addProCarrito,alertaAddProducto,cerrarAlertaAddProducto,nCantidad,carrito}=useCarrito()  
 
   const {abreModalCarrito}=useModalCarrito()
 
@@ -18,10 +19,8 @@ const ListaProductos = ({productos}) => {
 
   const onClick=(inputValue)=>{
     const sum=true
-    const dato = carrito.filter(pro => pro.producto === inputValue.name)
-   
-      addProCarrito(dato[0], parseFloat(inputValue.value),sum)
-    
+    const dato = carrito.filter(pro => pro.producto === inputValue.name)  
+    addProCarrito(dato[0], parseFloat(inputValue.value),sum)
   }
 
   return (
@@ -50,9 +49,10 @@ const ListaProductos = ({productos}) => {
                 totalcantidadproductos={nCantidad}
               />
         </div>
-
+        {
+          carrito.length!==0?<> <FinalizaCompraYa/></>:<></>
+        }
       <Alerta text="Agregado al carrito" alerta={alertaAddProducto} cerrar={cerrarAlertaAddProducto} tipo="success" />
-   
     </>
   )
 }

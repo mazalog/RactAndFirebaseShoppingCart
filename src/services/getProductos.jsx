@@ -10,7 +10,7 @@
     },
     {
       id:29,
-      producto: "Corn Flakes 230 gr ",
+      producto: "Corn Flakes",
       precio: 2,
       url:
         "https://ik.imagekit.io/xdqklh2jgw/media/products/2685/Corn_Flakes_230g.png?tr=w-180",

@@ -4,26 +4,21 @@ import { CssBaseline,IconButton ,Grid, Box, Typography,Fab} from "@material-ui/c
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import MenuIcon from "@material-ui/icons/Menu";
 import { useStyles } from "./style"
-import {Route,Switch} from 'wouter'
 import {useModalCarrito} from '../../hooks/useModalCarrito'
 import AppBar from "../AppBar"
 import BarraNavegacion from "../BarraNavegacion"
 import Bread from "../Bread"
 import ModalCarrito from '../ModalCarrito'
-import BusquedaCategoria from "../../pages/BusquedaCategoria";
-import BusquedaProducto from '../../pages/BusquedaProducto'
-import  Home from "../../pages/Home";
-import  SingleProducto from "../../pages/SingleProducto";
-import FinalizarPedidoPage from "../../pages/FinalizarPedido";
-import OrdenPage from "../../pages/FinalizarPedido/Orden";
 import Footer from "../Footer";
-import Services from "../Services"
+import Services from "../Services" 
 
 
-function Panel(props) {
+export default function Layout({children},props) {
 
   const { window } = props
+
   const classes = useStyles()
+
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const {modalCarrito,cerrarModalCarrito}=useModalCarrito()
@@ -61,6 +56,7 @@ function Panel(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
           <div className="container">
+
             <Grid container spacing={1}>
               <Grid container item xs={12}>
                 <Box marginY={6}>
@@ -72,32 +68,9 @@ function Panel(props) {
                 </Box>
               </Grid>
             </Grid>
-            <Switch>
-            <Route
-            component={Home}
-            path="/"
-            />
-            <Route
-             component={BusquedaCategoria}
-             path="/categorias/:categoria"
-            />
-            <Route
-            component={BusquedaProducto}
-            path="/busqueda/:producto"
-            />
-            <Route
-            component={SingleProducto}
-            path="/producto/:producto"
-            />
-            <Route
-            component={FinalizarPedidoPage}
-            path="/FinalizarPedido"
-            />
-            <Route
-             component={OrdenPage}
-             path="/FinalizarPedido/Orden/:orden"
-            />
-            </Switch>
+
+             {children}
+
             <div className="menu">
               <IconButton
                 onClick={() =>handleDrawerToggle()}
@@ -119,14 +92,15 @@ function Panel(props) {
 
           </div>
           <Services/>
+
           <Footer/>
+
       </main>
     </div>
   )
 }
 
-Panel.propTypes = {
+Layout.propTypes = {
   window: PropTypes.func,
 }
 
-export default Panel

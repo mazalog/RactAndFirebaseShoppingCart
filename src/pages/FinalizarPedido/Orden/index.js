@@ -17,12 +17,10 @@ export default function OrdenPage({ params }) {
 
     useEffect(() => {
         consultarOrden({ id: params.orden }).then((res) => {
-            console.log(res.data())
             setOrden(res.data())
             setLoading(false)
         })
             .catch((err) => {
-                console.log(err)
                 setError(true)
                 setLoading(false)
             })

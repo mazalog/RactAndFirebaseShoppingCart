@@ -1,30 +1,31 @@
-import React,{useState} from "react";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActions from "@material-ui/core/CardActions";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import { Paper, Box, Grid, Tooltip,Button } from "@material-ui/core";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { green } from "@material-ui/core/colors";
+import React,{useState} from "react"
+import Card from "@material-ui/core/Card"
+import CardMedia from "@material-ui/core/CardMedia"
+import CardActions from "@material-ui/core/CardActions"
+import IconButton from "@material-ui/core/IconButton"
+import Typography from "@material-ui/core/Typography"
+import { Paper, Box, Grid, Tooltip,Button } from "@material-ui/core"
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
+import { green } from "@material-ui/core/colors"
 import {useStyles} from './style'
-import {Link, useLocation,} from 'wouter'
-import { animateScroll as scroll } from 'react-scroll';
-import InputEdit from "../Formularios/InputEditCard";
+import { useLocation,} from 'wouter'
+import { animateScroll as scroll } from 'react-scroll'
+import InputEdit from "../Formularios/InputEditCard"
 import './style.css'
 
 export default function RecipeReviewCard(props) {
   
-    const classes = useStyles();
+    const classes = useStyles()
 
     const theme = createMuiTheme({
     palette: {
         primary: green,
       },
-    });
+    })
+
     function ccyFormat(num) {
-      return `${num.toFixed(2)}`;
+      return `${num.toFixed(2)}`
     }
 
     const [,navigate]=useLocation()
@@ -50,6 +51,7 @@ export default function RecipeReviewCard(props) {
 
     const onClick=()=>{
       const numero=parseFloat(inputValue.value)
+      
         if (isNaN(numero)){
             console.log ("Ups... " + numero + " no es un número.");
         } else {

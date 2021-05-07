@@ -3,54 +3,69 @@ import CarritoContext from '../context/CarritoContext'
 
 export function useCarrito(){
 
-  const {carrito,setCarrito}=useContext(CarritoContext)
+  const {carrito,setCarrito,guardarEnStorage}=useContext(CarritoContext)
+
 
   const [alertaAddProducto,setAlertaAddProducto]=useState(false)
 
   const [alertaDeleteProducto,setAlertaDeleteProducto]=useState(false)
 
+  
+  const formateoCantidad=(num)=>{
+    return `${num.toFixed(2)}`;
+  }
+
   const addProCarrito =(producto,cantidad,sum)=> {
+
+    //Si desea sumarle una cantidad especifica
+    // a un producto dentro del carro envie como argumento 
+    //el producto  la cantidad y un true en ese orden
+
     let productoActual = {
-      producto: producto.producto,
-      total: producto.precio,
-      cantidad: cantidad?cantidad:1,
-      precio: producto.precio,
-      url: producto.url
+      ...producto,
+      id: producto.id,
+      total:parseFloat(producto.precio),
+      cantidad: cantidad?parseFloat(cantidad):1,
+      precio: parseFloat(producto.precio),
     }
 
    if (carrito.length !== 0) {
 
-     var seguir = true;
+     let productoEncontrado = false;
 
-     carrito.forEach((carro) => { 
+     carrito.forEach((productoEnCarro) => { 
 
-       if (carro.producto === producto.producto) {
+       if (productoEnCarro.id === productoActual.id) {
 
-         seguir = false;
+        productoEncontrado = true;
 
-         let totalActual =cantidad? parseFloat(carro.total) + parseFloat(producto.precio)*cantidad:parseFloat(carro.total) + parseFloat(producto.precio);
-         let totalCantidad =sum?cantidad+parseFloat(carro.cantidad)  : cantidad?cantidad:parseFloat(carro.cantidad) + 1;
-         const dato = {
-           producto: producto.producto,
-           total: totalActual,
+         let totalActual =productoEnCarro.total + (productoEnCarro.precio*productoActual.cantidad),
+         totalCantidad =sum?productoActual.cantidad+productoEnCarro.cantidad 
+                           :productoEnCarro.cantidad + 1
+        
+         const cambioDelRegistro = {
+           ...productoEnCarro,
+           total:formateoCantidad(totalActual),
            cantidad: totalCantidad,
-           precio: producto.precio,
-           url: producto.url,
-         };
-         setCarrito(carrito.map( (carro) => carro.producto === producto.producto ? dato : carro ))
+         }
+
+         setCarrito(carrito.map( (registroEnCarro) => registroEnCarro.id === productoActual.id ? cambioDelRegistro 
+                                                                                                : registroEnCarro ))
+          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
          setAlertaAddProducto(true)
        }
 
      })
 
-     if (seguir) {
+     if (!productoEncontrado) {
        setCarrito([...carrito, productoActual])
+       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
        setAlertaAddProducto(true)
-
      }
 
    } else {
      setCarrito([...carrito, productoActual])
+     guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
      setAlertaAddProducto(true)
    }
  }
@@ -58,28 +73,34 @@ export function useCarrito(){
   const vaciarCarrito = () => setCarrito([])
 
   const eliminarProCarrito = (producto,cantidad) => {
-    let can=cantidad? cantidad: cantidad===0?producto.cantidad:1
-    if (producto.cantidad > can) {
 
-      carrito.forEach((carro) => {
-        if (carro.producto === producto.producto) {
-          const dato = {
-            producto: producto.producto,
-            total:cantidad?carro.total-(producto.precio*cantidad) :carro.total - carro.precio,
-            cantidad:cantidad?cantidad:producto.cantidad - 1,
-            precio: carro.precio,
-            url: carro.url,
+    //Si desea eliminar una cantidad especifica del registro de un producto 
+    //pase el producto seguido de la cantidad 
+  
+    let cantidadAEliminar=cantidad? cantidad: cantidad===0?producto.cantidad:1
+    
+    if (producto.cantidad > cantidadAEliminar) {
+
+      carrito.forEach((productoEnCarro) => {
+
+        if (productoEnCarro.id=== producto.id) {
+          const cambioDelRegistro = {
+            ...productoEnCarro,
+            total:formateoCantidad(productoEnCarro.total-(producto.precio*cantidadAEliminar)),
+            cantidad:producto.cantidad - cantidadAEliminar,
           }
           setCarrito(
-            carrito.map((carr) =>
-              carr.producto === producto.producto ? dato : carr
+            carrito.map((registroEnCarro) =>
+              registroEnCarro.id === producto.id ? cambioDelRegistro : registroEnCarro
             )
           )
+          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
           setAlertaDeleteProducto(true)
         }
       })
     } else {
-      setCarrito(carrito.filter((carro) => carro.producto !== producto.producto))
+      setCarrito(carrito.filter((registroEnCarro) => registroEnCarro.id !== producto.id))
+       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
       setAlertaDeleteProducto(true)
     }
   }
@@ -92,22 +113,18 @@ export function useCarrito(){
     setAlertaDeleteProducto(false)
   }
 
-  const formateoCantidad=(num)=>{
-    return `${num.toFixed(2)}`;
-
-  }
-
-  const nCantidad = Object.values(carrito).reduce(
+  const nCantidad =  Object.values(carrito).reduce(
     (acc, { cantidad }) => acc + cantidad,
     0
   )
 
-   const nPrecio = Object.values(carrito).reduce(
+   const nPrecio =formateoCantidad (Object.values(carrito).reduce(
     (acc, { cantidad, precio }) => acc + cantidad * precio,
     0
-  );
+  ))
 
-    const pagar=()=>{
+    const enviarPedidoaWhatsapp=({cell})=>{
+
     if(carrito.length>0){
     const array = [];
     carrito.forEach((doc) => {
@@ -119,25 +136,15 @@ export function useCarrito(){
            "$ x " +
            doc.cantidad +
            " uni = " +
-           formateoCantidad(doc.precio)*doc.cantidad +
+            doc.total +
            "$" +
            "%3A%0A"
        )
-     );
-   });
-   const nCantidad = Object.values(carrito).reduce(
-     (acc, { cantidad }) => acc + cantidad,
-     0
-   );
-   var nPrecio = Object.values(carrito).reduce(
-     (acc, { cantidad, precio }) => acc + cantidad * precio,
-     0
-   );
-
-   nPrecio = formateoCantidad(nPrecio);
+     )
+   })
 
     window.open(
-      `https://api.whatsapp.com/send?phone=584241917939&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
+      `https://api.whatsapp.com/send?phone=${cell}&text=Hola+requiero+este+pedido%3A%0A%0A${array.toString()}%3A%0A%0ACantidad+de+Articulos%3A${nCantidad}+%2C%0ATotal%3A${nPrecio}$+%0A`,
       "_blank"
     ); 
   }
@@ -156,7 +163,7 @@ export function useCarrito(){
            nPrecio,
            alertaDeleteProducto,
            cerrarAlertaDeleteProducto,
-           pagar,
+           enviarPedidoaWhatsapp,
            formateoCantidad
           }
 

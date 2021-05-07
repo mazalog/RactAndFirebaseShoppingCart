@@ -1,12 +1,13 @@
 import './index.css'
 import IconWhatsapp from '../IconWhatsapp'
 import IconInstagram from '../IconInstagram'
+
 export default function Social() {
     return (
         <div className="portada" >
             <div className="container-social">
                 <div className="container-img">
-                    <img className="img-social" src="/logomzhogar.png" />
+                    <img className="img-social" src="/logomzhogar.png" loading="lazy" />
                 </div>
             </div>
             <div className="social-icons">

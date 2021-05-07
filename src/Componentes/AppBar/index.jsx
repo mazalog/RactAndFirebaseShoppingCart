@@ -1,22 +1,20 @@
-import React from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import {useStyles} from './style'
-import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import {yellow} from '@material-ui/core/colors'
-import KitchenIcon from '@material-ui/icons/Kitchen';
+import React from "react"
+import { Link } from "wouter"
 import Autocomplete from '../BarraBusqueda'
-import { Link } from "wouter";
-import './style.css'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import {useModalCarrito} from '../../hooks/useModalCarrito'
-import { withStyles } from '@material-ui/core/styles';
+import AppBar from "@material-ui/core/AppBar"
+import Toolbar from "@material-ui/core/Toolbar"
+import IconButton from "@material-ui/core/IconButton"
+import Typography from "@material-ui/core/Typography"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core"
+import {yellow} from '@material-ui/core/colors'
+import KitchenIcon from '@material-ui/icons/Kitchen'
+import { withStyles } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
+import {useStyles} from './style'
+import './style.css'
+import {useModalCarrito} from '../../hooks/useModalCarrito'
 import {useCarrito} from '../../hooks/useCarrito'
-
-
 
 export default function SearchAppBar(props) {
   
@@ -80,5 +78,5 @@ export default function SearchAppBar(props) {
         </AppBar>
       </div>
     </ThemeProvider>
-  );
+  )
 }

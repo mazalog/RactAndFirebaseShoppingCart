@@ -33,7 +33,6 @@ export default function SpanningTable(props) {
     cerrarAlertaDeleteProducto,
     nCantidad,
     nPrecio,
-    pagar
   } = useCarrito()
 
   const eliminarprocarrito = (producto) => {

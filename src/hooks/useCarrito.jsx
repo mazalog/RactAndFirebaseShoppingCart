@@ -17,8 +17,11 @@ export function useCarrito(){
 
   const addProCarrito =(producto,cantidad,sum)=> {
 
-    //Si desea sumarle una cantidad especifica
-    // a un producto dentro del carro envie como argumento 
+    //si desea reemplazar la cantidad de un registro 
+    //envie el producto y la cantidad 
+
+    //Si desea sumarle una cantidad 
+    // a un registro  envie 
     //el producto  la cantidad y un true en ese orden
 
     let productoActual = {
@@ -41,7 +44,7 @@ export function useCarrito(){
 
          let totalActual =productoEnCarro.total + (productoEnCarro.precio*productoActual.cantidad),
          totalCantidad =sum?productoActual.cantidad+productoEnCarro.cantidad 
-                           :productoEnCarro.cantidad + 1
+                           :cantidad?cantidad:productoEnCarro.cantidad + 1
         
          const cambioDelRegistro = {
            ...productoEnCarro,

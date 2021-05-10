@@ -1,12 +1,12 @@
 import React from "react"
-import {Grid} from "@material-ui/core"
-import Alert from "@material-ui/lab/Alert";
 import {useCarrito} from "../../hooks/useCarrito"
 import {useModalCarrito} from '../../hooks/useModalCarrito'
-import Producto from "../Producto"; 
+import {Grid} from "@material-ui/core"
+import Alert from "@material-ui/lab/Alert"
+import Producto from "../Producto"
 import Car from "../Car"
 import Alerta from '../Alerta'
-import FinalizaCompraYa from "../FinalizaCompraYa";
+import FinalizaCompraYa from "../FinalizaCompraYa"
 
 
 const ListaProductos = ({productos}) => {

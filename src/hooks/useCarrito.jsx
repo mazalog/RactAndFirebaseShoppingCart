@@ -5,14 +5,12 @@ export function useCarrito(){
 
   const {carrito,setCarrito,guardarEnStorage}=useContext(CarritoContext)
 
-
   const [alertaAddProducto,setAlertaAddProducto]=useState(false)
 
   const [alertaDeleteProducto,setAlertaDeleteProducto]=useState(false)
-
   
   const formateoCantidad=(num)=>{
-    return `${num.toFixed(2)}`;
+    return parseFloat(`${num.toFixed(2)}`)
   }
 
   const addProCarrito =(producto,cantidad,sum)=> {
@@ -51,59 +49,62 @@ export function useCarrito(){
            total:formateoCantidad(totalActual),
            cantidad: totalCantidad,
          }
-
-         setCarrito(carrito.map( (registroEnCarro) => registroEnCarro.id === productoActual.id ? cambioDelRegistro 
-                                                                                                : registroEnCarro ))
-          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
+         const registroActualizado=carrito.map( (registroEnCarro) => registroEnCarro.id === productoActual.id ? cambioDelRegistro 
+         : registroEnCarro )
+         setCarrito(registroActualizado)
+          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(registroActualizado))
          setAlertaAddProducto(true)
        }
 
      })
 
      if (!productoEncontrado) {
-       setCarrito([...carrito, productoActual])
-       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
+       const registroActualizado=[...carrito, productoActual]
+       setCarrito(registroActualizado)
+       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(registroActualizado))
        setAlertaAddProducto(true)
      }
 
    } else {
-     setCarrito([...carrito, productoActual])
-     guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
+     const registroActualizado=[...carrito, productoActual]
+     setCarrito(registroActualizado)
+     guardarEnStorage && localStorage.setItem('carro',JSON.stringify(registroActualizado))
      setAlertaAddProducto(true)
    }
  }
 
-  const vaciarCarrito = () => setCarrito([])
+  const vaciarCarrito = () =>{ 
+    setCarrito([])
+    guardarEnStorage && localStorage.removeItem('carro')
+  }
 
   const eliminarProCarrito = (producto,cantidad) => {
 
-    //Si desea eliminar una cantidad especifica del registro de un producto 
+    //Si desea reemplazar una cantidad  del registro de un producto 
     //pase el producto seguido de la cantidad 
-  
-    let cantidadAEliminar=cantidad? cantidad: cantidad===0?producto.cantidad:1
+   
+    let cantidadRecibida=cantidad? cantidad: cantidad===0?producto.cantidad:1
     
-    if (producto.cantidad > cantidadAEliminar) {
+    if (producto.cantidad > cantidadRecibida) {
 
       carrito.forEach((productoEnCarro) => {
 
         if (productoEnCarro.id=== producto.id) {
           const cambioDelRegistro = {
             ...productoEnCarro,
-            total:formateoCantidad(productoEnCarro.total-(producto.precio*cantidadAEliminar)),
-            cantidad:producto.cantidad - cantidadAEliminar,
+            total:cantidad?producto.precio*cantidadRecibida:productoEnCarro.total-(producto.precio*cantidadRecibida),
+            cantidad:cantidad?cantidadRecibida:producto.cantidad - cantidadRecibida,
           }
-          setCarrito(
-            carrito.map((registroEnCarro) =>
-              registroEnCarro.id === producto.id ? cambioDelRegistro : registroEnCarro
-            )
-          )
-          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
+          const registroActualizado=carrito.map((registroEnCarro) =>registroEnCarro.id === producto.id ? cambioDelRegistro : registroEnCarro )
+          setCarrito(registroActualizado)
+          guardarEnStorage && localStorage.setItem('carro',JSON.stringify(registroActualizado))
           setAlertaDeleteProducto(true)
         }
       })
     } else {
-      setCarrito(carrito.filter((registroEnCarro) => registroEnCarro.id !== producto.id))
-       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(carrito))
+      const registroActualizado=carrito.filter((registroEnCarro) => registroEnCarro.id !== producto.id)
+      setCarrito(registroActualizado)
+       guardarEnStorage && localStorage.setItem('carro',JSON.stringify(registroActualizado))
       setAlertaDeleteProducto(true)
     }
   }

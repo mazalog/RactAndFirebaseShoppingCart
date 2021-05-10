@@ -21,10 +21,11 @@ export default function OrdenPage({ params }) {
             setLoading(false)
         })
             .catch((err) => {
+                console.log(err)
                 setError(true)
                 setLoading(false)
             })
-    }, [])
+    }, [params.orden])
 
     const fechaFormateada = (fecha) => {
         var dia = fecha.getDate(),

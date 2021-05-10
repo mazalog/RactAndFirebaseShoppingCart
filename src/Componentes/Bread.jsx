@@ -1,10 +1,10 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
-import HomeIcon from '@material-ui/icons/Home';
-import { useLocation } from 'wouter';
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import Typography from '@material-ui/core/Typography'
+import Breadcrumbs from '@material-ui/core/Breadcrumbs'
+import Link from '@material-ui/core/Link'
+import HomeIcon from '@material-ui/icons/Home'
+import { useLocation } from 'wouter'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: 20,
     height: 20,
   },
-}));
+}))
 
 export default function IconBreadcrumbs() {
   const classes = useStyles();
@@ -38,5 +38,5 @@ export default function IconBreadcrumbs() {
         
       </Typography>
     </Breadcrumbs>
-  );
+  )
 }

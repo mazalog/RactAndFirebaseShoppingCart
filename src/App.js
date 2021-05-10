@@ -10,14 +10,17 @@ import BusquedaPage from './pages/BusquedaProducto'
 import SingleProducto from "./pages/SingleProducto";
 import FinalizarPedidoPage from "./pages/FinalizarPedido";
 import OrdenPage from "./pages/FinalizarPedido/Orden";
+import AdminPage from './pages/admin'
 
 
 function App() {
-  return (
+  return (<>
+
     <ProductosContextProvider>
       <CarritoContextProvider>
         <Layout>
           <Switch>
+
             <Route
               component={HomePage}
               path="/"
@@ -42,10 +45,15 @@ function App() {
               component={OrdenPage}
               path="/FinalizarPedido/Orden/:orden"
             />
+            <Route
+              component={AdminPage}
+              path="/admin"
+            />
           </Switch>
         </Layout>
       </CarritoContextProvider>
     </ProductosContextProvider>
+  </>
   );
 }
 

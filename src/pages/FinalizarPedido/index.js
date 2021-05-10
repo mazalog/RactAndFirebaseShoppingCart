@@ -13,9 +13,10 @@ import { agregaOrden } from '../../firebase/client'
 
 export default function FinalizarPedidoPage() {
 
-    const { carrito, nPrecio, formateoCantidad, nCantidad } = useCarrito()
+    const { carrito, nPrecio, nCantidad } = useCarrito()
 
     const [radio, setRadio] = useState('')
+
     const valoresIniciales = {
         nombreApellido: ''
         , telefono: '',
@@ -48,7 +49,9 @@ export default function FinalizarPedidoPage() {
         if (valores.direccion === '') return setErrors({ ...errors, direccion: true })
         if (radio === '') return setErrors({ ...errors, radio: true })
         if (carrito.length === 0) return setErrors({ ...errors, carritoErr: true })
+
         setLoading(true)
+
         agregaOrden({
             cliente: valores.nombreApellido,
             email: valores.correo,
@@ -60,7 +63,6 @@ export default function FinalizarPedidoPage() {
             precioTotal: nPrecio,
             cantidadTotal: nCantidad
         }).then((res) => {
-            console.log(res.id)
             setLoading(false)
             window.location = `/FinalizarPedido/orden/${res.id}`
         }).catch((err) => {
@@ -112,13 +114,13 @@ export default function FinalizarPedidoPage() {
                                         {
                                             carrito.map(doc =>
                                                 <div className="list" key={doc.url}>
-                                                    <p>{doc.producto} X {doc.cantidad} = {formateoCantidad(doc.precio * doc.cantidad)}</p>
+                                                    <p>{doc.producto} X {doc.cantidad} = {doc.total}</p>
                                                     <Divider />
                                                 </div>
                                             )
                                         }
                                         <p className="total-title">Total:</p>
-                                        <p className="total">${formateoCantidad(nPrecio)}</p>
+                                        <p className="total">${nPrecio}</p>
                                         {
                                             errors.carritoErr ? <span className="span-error">El carrito esta vacio</span> : <></>
                                         }

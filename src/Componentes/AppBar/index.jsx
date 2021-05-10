@@ -18,14 +18,7 @@ import {useCarrito} from '../../hooks/useCarrito'
 
 export default function SearchAppBar(props) {
   
-  const theme = createMuiTheme({
-    palette: {
-      primary: {
-        main: "#fff176",
-      },
-      secondary: yellow,
-    },
-  });
+
 
   const StyledBadge = withStyles((theme) => ({
     badge: {
@@ -43,7 +36,7 @@ export default function SearchAppBar(props) {
    const {nCantidad}=useCarrito()
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={props.theme}>
       <div className={classes.root}>
         <AppBar position="fixed" className={props.clase}>
           <Toolbar>

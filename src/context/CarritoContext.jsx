@@ -6,7 +6,7 @@ export function CarritoContextProvider({children}){
     const [carrito,setCarrito]=useState([])
     const [modalCarrito,setModalCarrito]=useState(false)
 
-    let guardarEnStorage=false
+    let guardarEnStorage=true
 
     useEffect(()=>{
         const CarroEnStorage = localStorage.getItem('carro')

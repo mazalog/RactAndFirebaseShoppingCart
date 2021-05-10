@@ -45,6 +45,7 @@ export default function Layout({children},props) {
       <AppBar
         handleDrawerToggle={handleDrawerToggle}
         clase={classes.appBar}
+        theme={theme}
       />
 
       <BarraNavegacion

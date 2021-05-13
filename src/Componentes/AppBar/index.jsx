@@ -6,8 +6,7 @@ import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
-import { createMuiTheme, ThemeProvider } from "@material-ui/core"
-import {yellow} from '@material-ui/core/colors'
+import { ThemeProvider } from "@material-ui/core"
 import KitchenIcon from '@material-ui/icons/Kitchen'
 import { withStyles } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';

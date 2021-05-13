@@ -3,7 +3,8 @@ import CarritoContext from '../context/CarritoContext'
 
 export function useCarrito(){
 
-  const {carrito,setCarrito,guardarEnStorage}=useContext(CarritoContext)
+  const {values}=useContext(CarritoContext)
+  const {carrito,setCarrito,guardarEnStorage}=values
 
   const [alertaAddProducto,setAlertaAddProducto]=useState(false)
 
@@ -21,10 +22,8 @@ export function useCarrito(){
     //Si desea sumarle una cantidad 
     // a un registro  envie 
     //el producto  la cantidad y un true en ese orden
-
     let productoActual = {
       ...producto,
-      id: producto.id,
       total:parseFloat(producto.precio),
       cantidad: cantidad?parseFloat(cantidad):1,
       precio: parseFloat(producto.precio),

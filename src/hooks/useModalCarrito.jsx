@@ -3,7 +3,8 @@ import CarritoContext from '../context/CarritoContext'
 
 export function useModalCarrito(){
     
-    const {modalCarrito,setModalCarrito}=useContext(CarritoContext)
+    const {values}=useContext(CarritoContext)
+    const {modalCarrito,setModalCarrito}=values
 
     const abreModalCarrito = () => setModalCarrito(true)
 

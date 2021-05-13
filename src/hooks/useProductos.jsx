@@ -1,10 +1,9 @@
-import {useContext,useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import getProductos from '../services/getProductos'
-import ProductosContex from '../context/ProductosContext'
 
 export function useProductos(){
 
-    const {productos,setProductos}=useContext(ProductosContex)
+    const [productos,setProductos]=useState([])
 
     useEffect(()=>{
       const data= getProductos()

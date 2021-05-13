@@ -4,7 +4,7 @@ import CardMedia from "@material-ui/core/CardMedia"
 import CardActions from "@material-ui/core/CardActions"
 import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
-import { Paper, Box, Grid, Tooltip,Button } from "@material-ui/core"
+import { Paper, Box, Grid,Button } from "@material-ui/core"
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart"
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"
 import { green } from "@material-ui/core/colors"
@@ -13,8 +13,9 @@ import { useLocation,} from 'wouter'
 import { animateScroll as scroll } from 'react-scroll'
 import InputEdit from "../Formularios/InputEditCard"
 import './style.css'
+import { useCarrito } from "../../hooks/useCarrito"
 
-export default function RecipeReviewCard(props) {
+export default function CartaProducto(props) {
   
     const classes = useStyles()
 
@@ -23,16 +24,13 @@ export default function RecipeReviewCard(props) {
         primary: green,
       },
     })
+    const {carrito,addProCarrito,formateoCantidad}=useCarrito()
 
-    function ccyFormat(num) {
-      return `${num.toFixed(2)}`
-    }
-
-    const [,navigate]=useLocation()
+    const [,pushLocation]=useLocation()
 
     const verProducto=(producto)=>{
     scroll.scrollToTop()
-    navigate(`/producto/${producto}`)
+    pushLocation(`/producto/${producto}`)
     }
 
     const [clicks,setClicks]=useState(0)
@@ -45,11 +43,13 @@ export default function RecipeReviewCard(props) {
     }
 
     const handleClick=(item)=>{
-     props.addprocarrito(item)
+     addProCarrito(item)
      setClicks(clicks+1)
     }
 
+
     const onClick=()=>{
+
       const numero=parseFloat(inputValue.value)
       
         if (isNaN(numero)){
@@ -57,8 +57,10 @@ export default function RecipeReviewCard(props) {
         } else {
             if (numero % 1 === 0) {
                if(numero>0){
-                 props.onClick(inputValue)
-                 setClicks(0)
+                    const sum=true
+                    const dato = carrito.filter(pro => pro.producto === inputValue.name)  
+                    addProCarrito(dato[0], parseFloat(inputValue.value),sum)
+                    setClicks(0)
                  }else{
                    console.log('Error')
                  }
@@ -95,7 +97,7 @@ export default function RecipeReviewCard(props) {
           <Grid container spacing={1}>
             <Grid container justify="center" item xs={6}>
               <Typography variant="subtitle2" className="mt-2">
-              ${ccyFormat(parseFloat(props.item.precio))}
+              ${formateoCantidad(parseFloat(props.item.precio))}
               </Typography>
             </Grid>
             <Grid container justify="flex-end" item xs={6}>
@@ -104,19 +106,16 @@ export default function RecipeReviewCard(props) {
                {
                  clicks===5?<>
                  </>:<>
-            <Tooltip title="Agregar al carrito">
                     <Button   
                     size="small"
                     onClick={()=>handleClick(props.item)} 
                     color="primary" 
                     endIcon={<AddShoppingCartIcon/>}
                      >Añadir</Button>
-              </Tooltip>
                  </>
                }
              </div>
              <div className="block-xs">
-             <Tooltip title="Agregar al carrito">
                     <IconButton  
                     size="small"
                     onClick={()=>handleClick(props.item)} 
@@ -124,7 +123,6 @@ export default function RecipeReviewCard(props) {
                      >
                       <AddShoppingCartIcon/>
                      </IconButton>
-              </Tooltip>
              </div>
               </ThemeProvider>
             </Grid>

@@ -6,10 +6,8 @@ import '../style.css'
 
 export default function OrdenPage({ params }) {
 
-
     const formateoCantidad = (num) => {
         return `${num.toFixed(2)}`;
-
     }
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(true)
@@ -58,7 +56,7 @@ export default function OrdenPage({ params }) {
                     <h6>Finalizar Pedido</h6>
                 </div>{
                     loading ? <div className="cargando"><Spinner /></div> : (<>{
-                        error ? <><div className="container-error"><h6 style={{ textAlign: 'center' }}>Ups, ocurrio un error</h6></div></> : (<>
+                        error ? <><div className="container-error"><h6 style={{ textAlign: 'center', fontSize: '18px' }}>Ups, ocurrio un error</h6></div></> : (<>
 
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={12} md={4} >

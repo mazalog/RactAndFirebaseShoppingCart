@@ -12,11 +12,11 @@ export default function FinalizaCompraYa() {
     }
     return (
         <>
-            <nav className="finalizar">
-                <a onClick={handleClick}>
+            <div className="container_finalizar">
+                <div className="finalizar" onClick={handleClick}>
                     <h6>Finalizar Compra</h6>
-                </a>
-            </nav>
+                </div>
+            </div>
         </>
     )
 }

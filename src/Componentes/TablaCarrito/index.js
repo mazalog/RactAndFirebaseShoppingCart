@@ -4,25 +4,21 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Grid, IconButton, Tooltip } from "@material-ui/core/";
+import { IconButton, } from "@material-ui/core/";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import CloseIcon from "@material-ui/icons/Close";
 import Avatar from "@material-ui/core/Avatar";
 import BotonesCarrito from "../BotonesCarrito";
 import CheckIcon from '@material-ui/icons/Check'
 import Alerta from '../Alerta'
 import { useCarrito } from "../../hooks/useCarrito";
 import InputEdit from "../Formularios/InputEdit";
+import HeaderTablaCarrito from "../HeaderTablaCarrito";
 
-export default function SpanningTable(props) {
-
-  function ccyFormat(num) {
-    return `${num.toFixed(2)}`;
-  }
+export default function TablaCarrito() {
 
   const { carrito,
     addProCarrito,
@@ -31,8 +27,8 @@ export default function SpanningTable(props) {
     cerrarAlertaAddProducto,
     alertaDeleteProducto,
     cerrarAlertaDeleteProducto,
-    nCantidad,
     nPrecio,
+    formateoCantidad
   } = useCarrito()
 
   const eliminarprocarrito = (producto) => {
@@ -82,22 +78,7 @@ export default function SpanningTable(props) {
   return (
     <div>
       <DialogTitle id="form-dialog-title">
-        <Grid container spacing={1}>
-          <Grid container justify="flex-start" item xs={8}>
-            <h4 style={{ fontWeight: '600', color: 'gray', cursor: 'pointer' }}> {ccyFormat(parseFloat(nPrecio))}$ de  ({nCantidad}) articulos</h4>
-          </Grid>
-          <Grid container justify="flex-end" item xs={4}>
-            <Tooltip title="Cerrar Carrito">
-              <IconButton
-                aria-label="Cerrar carrito"
-                color="secondary"
-                onClick={() => props.handleClose()}
-              >
-                <CloseIcon></CloseIcon>
-              </IconButton>
-            </Tooltip>
-          </Grid>
-        </Grid>
+        <HeaderTablaCarrito />
       </DialogTitle>
       <DialogContent>
         <div style={{ height: '65vh', width: '100%', padding: 0, overflow: 'auto', borderBottom: '1px solid #b9b5b5' }}>
@@ -157,14 +138,12 @@ export default function SpanningTable(props) {
                         </IconButton>
                       </>
                     }
-
                   </TableCell>
                   <TableCell align="right">
-                    ${ccyFormat(parseFloat(item.total))}
+                    ${formateoCantidad(parseFloat(item.total))}
                   </TableCell>
                 </TableRow>
               ))}
-
               <TableRow>
                 <TableCell colSpan={1}>Total Pagar</TableCell>
                 <TableCell align="left">
@@ -173,23 +152,15 @@ export default function SpanningTable(props) {
                   </p>
                 </TableCell>
                 <TableCell colSpan={2}></TableCell>
-
               </TableRow>
             </TableBody>
-
           </Table>
         </div>
-
       </DialogContent>
 
       <DialogActions>
-        <BotonesCarrito
-          carrito={carrito}
-          cerrar={props.handleClose}
-          pagartotal={nPrecio}
-        />
+        <BotonesCarrito />
       </DialogActions>
-
 
       <Alerta text="Agregado al carrito" alerta={alertaAddProducto} cerrar={cerrarAlertaAddProducto} tipo="success" />
       <Alerta text="Articulo fuera del carrito" alerta={alertaDeleteProducto} cerrar={cerrarAlertaDeleteProducto} tipo="error" />

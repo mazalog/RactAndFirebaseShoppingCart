@@ -1,0 +1,22 @@
+.contenedor_botones_carrito{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.boton_accion_carrito{
+    width: auto;
+    margin: 10px;
+    padding: 13px 10px 13px 10px;
+    font-size: 15px;
+    border-radius: 3px;
+    border:none;
+    cursor: pointer;
+    transition: .3s ease all;
+}
+.boton_accion_carrito.bg-whatsapp{
+    color: #fff;
+    background:rgb(31, 187, 83);
+}
+.boton_accion_carrito:hover{
+    box-shadow: 0 0 13px 0 rgba(185, 185, 185, .5);
+}

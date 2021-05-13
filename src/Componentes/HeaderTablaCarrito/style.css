@@ -1,0 +1,17 @@
+.container_header_tabla{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.container_header_tabla h4{
+    font-weight: 600;
+    color: gray;
+    cursor: pointer;
+    width: auto;
+    margin: 0;
+}
+.icono_cerrar{
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+}

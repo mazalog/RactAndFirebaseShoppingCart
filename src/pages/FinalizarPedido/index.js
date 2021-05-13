@@ -111,14 +111,12 @@ export default function FinalizarPedidoPage() {
                                 <div className="box-pedido">
                                     <h6>Tu pedido</h6>
                                     <div className="container-list">
-                                        {
-                                            carrito.map(doc =>
-                                                <div className="list" key={doc.url}>
-                                                    <p>{doc.producto} X {doc.cantidad} = {doc.total}</p>
-                                                    <Divider />
-                                                </div>
-                                            )
-                                        }
+                                        {carrito.map(doc =>
+                                            <div className="list" key={doc.url}>
+                                                <p>{doc.producto} X {doc.cantidad} = {doc.total}</p>
+                                                <Divider />
+                                            </div>
+                                        )}
                                         <p className="total-title">Total:</p>
                                         <p className="total">${nPrecio}</p>
                                         {

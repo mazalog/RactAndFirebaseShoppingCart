@@ -1,26 +1,24 @@
-import React from 'react'
-import "./estilo.css"
-import { ProductosContextProvider } from './context/ProductosContext'
+import React, { Suspense } from 'react'
 import { CarritoContextProvider } from "./context/CarritoContext"
 import { Route, Switch } from 'wouter'
 import Layout from './Componentes/Layout'
-import HomePage from "./pages/Home";
-import CategoriaPage from "./pages/BusquedaCategoria";
+import CategoriaPage from "./pages/BusquedaCategoria"
+import SingleProducto from "./pages/SingleProducto"
+import HomePage from './pages/Home'
 import BusquedaPage from './pages/BusquedaProducto'
-import SingleProducto from "./pages/SingleProducto";
-import FinalizarPedidoPage from "./pages/FinalizarPedido";
-import OrdenPage from "./pages/FinalizarPedido/Orden";
-import AdminPage from './pages/admin'
+import "./estilo.css"
 
+const FinalizarPedidoPage = React.lazy(() => import('./pages/FinalizarPedido'))
+const OrdenPage=React.lazy(()=>import ('./pages/FinalizarPedido/Orden'))
+const AdminPage = React.lazy(() => import('./pages/admin'))
 
 function App() {
   return (<>
 
-    <ProductosContextProvider>
-      <CarritoContextProvider>
-        <Layout>
+    <CarritoContextProvider>
+      <Layout>
+        <Suspense fallback={null}>
           <Switch>
-
             <Route
               component={HomePage}
               path="/"
@@ -50,9 +48,9 @@ function App() {
               path="/admin"
             />
           </Switch>
-        </Layout>
-      </CarritoContextProvider>
-    </ProductosContextProvider>
+        </Suspense>
+      </Layout>
+    </CarritoContextProvider>
   </>
   );
 }

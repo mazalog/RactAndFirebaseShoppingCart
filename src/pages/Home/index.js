@@ -4,15 +4,16 @@ import Social from '../../Componentes/Social'
 import { useProductos } from '../../hooks/useProductos'
 import './style.css'
 
-const Home = () => {
+export default function Home() {
+
     const { productos } = useProductos()
 
     return (<>
-        <div className="aloneXs">
+
+        <div className="d-none-md">
             <Social />
         </div>
+
         <ListaProductos productos={productos} />
     </>)
-
 }
-export default Home

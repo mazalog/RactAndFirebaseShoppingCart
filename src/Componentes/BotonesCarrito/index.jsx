@@ -1,47 +1,33 @@
 import React from 'react'
-import BottomNavigation from '@material-ui/core/BottomNavigation'
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction'
-import CloseIcon from '@material-ui/icons/Close'
-import {useStyles} from './style'
 import {useCarrito} from '../../hooks/useCarrito'
-import './styleCss.css'
-import { useLocation} from 'wouter'
 import { useModalCarrito } from '../../hooks/useModalCarrito'
+import { useLocation} from 'wouter'
 import {animateScroll as scroll} from 'react-scroll'
+import './style.css'
 
 
-export default function SimpleBottomNavigation(props) {
 
-  const classes = useStyles();
+export default function BotonesCarrito() {
+
   const {carrito,enviarPedidoaWhatsapp}=useCarrito()
-  
-
+  const {cerrarModalCarrito}=useModalCarrito()
   const [,navigate]=useLocation()
 
-  const {cerrarModalCarrito}=useModalCarrito()
-  
-  const navegar=()=>{
+
+  const finalizarCompra=()=>{
     if(carrito.length!==0){
     cerrarModalCarrito()
     scroll.scrollToTop()
     navigate('/FinalizarPedido')
     }
-
   }
   
   return (
   <>
-    <BottomNavigation
-      showLabels
-      className={classes.root}
-    >
-      <div className="btn-navi">
-         <div onClick={navegar} className="container-"><h6 className="fi">Finalizar Compra </h6></div>   
-         <div style={{marginTop:'6px'}} onClick={()=>enviarPedidoaWhatsapp({cell:5804241917939})} className="container-wha "><h6 className="wha">Realizar pedido por whatsapp</h6></div>         
+      <div className="contenedor_botones_carrito">
+         <button onClick={()=>enviarPedidoaWhatsapp({cell:'04125768850'})} className="boton_accion_carrito bg-whatsapp">Enviar pedido a whatsapp</button>
+         <button onClick={()=>finalizarCompra()} className="boton_accion_carrito">Finalizar compra</button>
       </div>
-   
-    <BottomNavigationAction icon={<CloseIcon  color="secondary" fontSize="large"/>} onClick={()=>props.cerrar()} />
-    </BottomNavigation>
   </>
-  );
+  )
 }

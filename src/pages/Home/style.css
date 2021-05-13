@@ -1,8 +1,8 @@
-.aloneXs{
+.d-none-md{
     display: none;
 }
 @media screen and (max-width:600px){
-    .aloneXs{
+    .d-none-md{
         display: block;
     }
 }

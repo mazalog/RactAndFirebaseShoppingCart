@@ -1,9 +1,8 @@
-import React from "react";
-import Dialog from "@material-ui/core/Dialog";
-import Table from "./TablaCarrito";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-
+import React from "react"
+import Dialog from "@material-ui/core/Dialog"
+import Table from "./TablaCarrito"
+import useMediaQuery from "@material-ui/core/useMediaQuery"
+import { useTheme } from "@material-ui/core/styles"
 
 export default function ModalCarrito(props) {
   
@@ -13,8 +12,8 @@ export default function ModalCarrito(props) {
   return (
     <div>
       <Dialog
-       fullScreen={fullScreen}    
-       open={props.open}
+        fullScreen={fullScreen}    
+        open={props.open}
         onClose={props.handleClose}
         aria-labelledby="form-dialog-title"
       >

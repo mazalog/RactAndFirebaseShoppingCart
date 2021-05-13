@@ -7,7 +7,7 @@ export default function Social() {
         <div className="portada" >
             <div className="container-social">
                 <div className="container-img">
-                    <img className="img-social" src="/logomzhogar.png" loading="lazy" />
+                    <img className="img-social" src="/logomzhogar.png" loading="lazy" alt="Logo" />
                 </div>
             </div>
             <div className="social-icons">

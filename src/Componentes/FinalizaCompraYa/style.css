@@ -1,17 +1,16 @@
 
-.finalizar{
+.container_finalizar{
     background:#fff176;
-    backdrop-filter:blur(5px);
     bottom:0;
     border-top:3px solid #eee;
-    height:40px;
+    height:50px;
     position:sticky;
     width:100%;
     display:none;
     margin-top: 20px;
     border-radius: 5px;
 }
-.finalizar a{
+.finalizar{
     cursor:pointer;
     align-items:center;
     display:flex;
@@ -21,12 +20,13 @@
     text-decoration: none;
 }
 .finalizar h6{
-  color: rgb(76 175 80);
+  color: #000;
+  font-size: 17px;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 @media screen and (max-width: 540px){
-    .finalizar{
+    .container_finalizar{
         display:flex;
     }
 }
